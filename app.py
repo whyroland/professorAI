@@ -1,3 +1,4 @@
+import argparse
 import io
 
 def transcribe_file(speech_file):
@@ -26,4 +27,6 @@ def transcribe_file(speech_file):
         print("Confidence: {}".format(result.alternatives[0].confidence))
 
 if __name__ == "__main__":
-    transcribe_file("test1.wav")
+    #transcribe_file("test1.wav")
+    val = input("Enter the file: ")
+    transcribe_file(val)
