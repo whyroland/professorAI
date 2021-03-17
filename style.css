@@ -1,3 +1,20 @@
 #image-upload {
     padding-left: 8%;
 }
+
+.text {
+    padding: 3% 8%
+}
+
+#transcript {
+    padding: 1% 0%;
+    overflow-y: scroll;
+}
+
+#classification {
+    padding: 1% 0%;
+}
+
+#links {
+    padding: 1% 0%;
+}
