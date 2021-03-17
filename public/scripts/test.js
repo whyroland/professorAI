@@ -1,8 +1,14 @@
-var yt = require('youtube.get-video-info');
-
-function cb(err, res) {
-  if (err) console.log('ERROR:', err);
-  else console.log(res);
+function getXML(id) {
+    var URI = "https://youtube.com/get_video_info?video_id=" + id;
+    return URI;
 }
 
-yt.retrieve('ml-v1bgMJDQ', cb);
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+httpGet(getXML("Mt6o3VoJkgU"));
