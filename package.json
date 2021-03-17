@@ -1,0 +1,22 @@
+{
+  "name": "linghacks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "youtube.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erice04/linghacks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erice04/linghacks/issues"
+  },
+  "homepage": "https://github.com/erice04/linghacks#readme",
+  "dependencies": {
+    "youtube.get-video-info": "^1.0.2"
+  }
+}
