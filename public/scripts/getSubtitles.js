@@ -1,10 +1,12 @@
-document.getElementById("abc").addEventListener("click", () => {
-  click();
-});
+const form = document.getElementById("youtube-form");
 
-function click() {
-  document.getElementById("transcript-text").innerHTML = "success";
-  
+console.log("Connected");
+
+form.onsubmit = function(event) {
+  document.getElementById("transcript-text").innerHTML = "https://www.youtube.com/watch?v=6-84CClZ06A&t=6s";
+
+  event.preventDefault();
+
   var request = require("request");
   var {DOMParser} = require("xmldom");
 
