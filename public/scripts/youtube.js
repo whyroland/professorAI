@@ -1,18 +1,17 @@
-// Ajax callback to the YouTube channel:
-$.ajax({
-  type: "GET",
-  url: "http://video.google.com/timedtext?type=track&v=zenMEj0cAC4&id=0&lang=en",
-  crossDomain: true,
-}).done(function(data) {
-  getCaption(data);
-});
+// $.ajax({
+//   type: "GET",
+//   url: "http://video.google.com/timedtext?type=track&v=zenMEj0cAC4&id=0&lang=en",
+//   crossDomain: true,
+// }).done(function(data) {
+//   getCaption(data);
+// });
+
+var caption;
 
 var parser, xmlDoc;
 var HTML_captions = "";
-
 function getCaption(data) {
   try {
-
     for (var i = 0; i < data.getElementsByTagName("transcript")[0].childNodes.length; i++) {
       var sentence = data.getElementsByTagName("transcript")[0].childNodes[i].innerHTML + "<br/>";
       HTML_captions += fixSpacing(sentence);
@@ -22,7 +21,16 @@ function getCaption(data) {
 
   } catch (err) {
     console.log(err);
-    alert('Error at getCaption function - see console for more details.');
+    alert('Error at getCaption function - see console form more details.');
+  }
+}
+
+function fillData() {
+  try {
+    document.getElementById("transcript-text").innerHTML = HTML_captions;
+  } catch (err) {
+    console.log(err);
+    alert('Error at fillData function - see console form more details.');
   }
 }
 
@@ -47,16 +55,33 @@ function fixSpacing(s) {
   return s;
 }
 
-function fillData() {
-  try {
-    document.getElementById("transcript-text").innerHTML = HTML_captions;
-  } catch (err) {
-    console.log(err);
-    alert('Error at fillData function - see console form more details.');
+function cb(err, res) {
+  if (err) {
+    console.log('ERROR:', err);
+  }
+  else {
+    return getXML(res);
   }
 }
 
-function getXML(id) {
-  return "https://www.youtube.com/api/timedtext?v=" + id + "&lang=en";
+function getXML(res) {
+  var begin = res.indexOf("captionTracks");
+  var end = res.indexOf("%2C%22name")
+  var captionTrack = res.substring(begin, end);
+  captionTrack = decodeURIComponent(captionTrack);
+  for(var i=0; i<captionTrack.length; i++) {
+    if(captionTrack.substring(i, i+6) == "\\u0026") {
+      captionTrack=captionTrack.substring(0,i) + "&" + captionTrack.substring(i+6);
+    }
+  }
+  return captionTrack;
 }
+
+function xml() {
+  var yt = require('youtube.get-video-info');
+  console.log(yt.retrieve('Mt6o3VoJkgU', cb));
+}
+xml();
+
+
 
