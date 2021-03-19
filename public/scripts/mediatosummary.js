@@ -1,4 +1,26 @@
-// Transcribes Audio File
+const speech = require('@google-cloud/speech');
+const request = require('request');
+const {Storage} = require('@google-cloud/storage');
+const language = require('@google-cloud/language');
+
+// Any function that you want to be used in other files put it in here
+module.exports = {
+  getSummary
+}
+
+/**
+ * Converts an MP4 into an MP3
+ * @param {} file 
+ */
+async function convertToMP3(file) {
+
+}
+
+/**
+ * Gets the transcript from an MP3 file
+ * @param {} file 
+ * @returns 
+ */
 async function transcribe(file) {
   // Imports the Google Cloud client library
   const speech = require('@google-cloud/speech');
@@ -50,6 +72,10 @@ async function transcribe(file) {
   return transcription
 }
 
+/**
+ * Uploads the file to use
+ * @param {} file 
+ */
 async function uploadFile(file) {
   // Imports the Google Cloud client library
   const {Storage} = require('@google-cloud/storage');
@@ -82,6 +108,35 @@ async function uploadFile(file) {
   console.log(`${filename} uploaded to storage bucket.`);
 }
 
+/**
+ * Gets the keywords from the transcript
+ * @param {*} transcription 
+ * @returns 
+ */
+async function entities(transcription) {
+  // Imports the Google Cloud client library
+  // const language = require('@google-cloud/language');
+
+  // Credentials
+  const projectId = 'linghacks';
+  const keyFilename = 'LingHacks-7227ba75112d.json';
+
+  // Creates a client
+  const client = new language.LanguageServiceClient({projectId, keyFilename});
+
+  // Text data
+  const text = transcription;
+
+  // Prepares a document, representing the provided text
+  const document = {
+    content: text,
+    type: 'PLAIN_TEXT',
+  };
+
+  // Detects entities in the document
+  const [result] = await client.analyzeEntities({document});
+
+  const entities = result.entities;
 
 
 // // Gets Entities for Transcription
@@ -132,8 +187,11 @@ function getKeywords(text) {
   });
 }
 
-
-// Gets Wikipedia Link for Topic
+/**
+ * Webscrapes Wikipedia for pages on the terms
+ * @param {} query 
+ * @returns 
+ */
 function getWiki(query) {
   return new Promise((resolve, reject) => {
     var request = require('request');
@@ -166,7 +224,11 @@ function getWiki(query) {
   });
 }
 
-// Gets Wikipedia Page Summary
+/**
+ * Obtains summary on the wikipedia pages
+ * @param {} query 
+ * @returns 
+ */
 function getExtract(query) {
   return new Promise((resolve, reject) => {
     var request = require('request');
@@ -246,4 +308,4 @@ async function getSummary(file) {
   return summary;
 }
 
-getSummary('samples/macro_video_notes_day_1.mp3');
+// getSummary('samples/macro_video_notes_day_1.mp3', 'mp3');

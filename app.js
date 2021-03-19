@@ -1,7 +1,6 @@
 // Setup NPM libraries
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require('path');
 
 // Import functions in from the other JS files
 const mediatosummary = require(__dirname + "/public/scripts/mediatosummary.js");
