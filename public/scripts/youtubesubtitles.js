@@ -68,7 +68,7 @@ function getCaption(data) {
 
 function fillData() {
   try {
-    document.getElementById("transcript-text").innerHTML = HTML_captions;
+    //document.getElementById("transcript-text").innerHTML = HTML_captions;
   } catch (err) {
     console.log(err);
     alert('Error at fillData function - see console form more details.');
