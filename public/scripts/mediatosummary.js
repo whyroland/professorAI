@@ -7,6 +7,20 @@ const language = require('@google-cloud/language');
 module.exports = {
   getSummary
 }
+
+/**
+ * Converts an MP4 into an MP3
+ * @param {} file 
+ */
+async function convertToMP3(file) {
+
+}
+
+/**
+ * Gets the transcript from an MP3 file
+ * @param {} file 
+ * @returns 
+ */
 async function transcribe(file) {
   // Imports the Google Cloud client library
   // const speech = require('@google-cloud/speech');
@@ -58,6 +72,10 @@ async function transcribe(file) {
   return transcription
 }
 
+/**
+ * Uploads the file to use
+ * @param {} file 
+ */
 async function uploadFile(file) {
   // Imports the Google Cloud client library
   // const {Storage} = require('@google-cloud/storage');
@@ -90,6 +108,11 @@ async function uploadFile(file) {
   console.log(`${filename} uploaded to storage bucket.`);
 }
 
+/**
+ * Gets the keywords from the transcript
+ * @param {*} transcription 
+ * @returns 
+ */
 async function entities(transcription) {
   // Imports the Google Cloud client library
   // const language = require('@google-cloud/language');
@@ -127,6 +150,11 @@ async function entities(transcription) {
   return entities;
 }
 
+/**
+ * Webscrapes Wikipedia for pages on the terms
+ * @param {} query 
+ * @returns 
+ */
 function getWiki(query) {
   return new Promise((resolve, reject) => {
 
@@ -158,6 +186,11 @@ function getWiki(query) {
   });
 }
 
+/**
+ * Obtains summary on the wikipedia pages
+ * @param {} query 
+ * @returns 
+ */
 function getExtract(query) {
   return new Promise((resolve, reject) => {
     // var request = require('request');
@@ -181,8 +214,15 @@ function getExtract(query) {
   })
 }
 
-// For MP3s
-async function getSummary(file) {
+/**
+ * Returns summaries for the given media file
+ * @param {} file 
+ * @param {*} type 
+ * @returns 
+ */
+async function getSummary(file, type) {
+  if (type === 'mp4')
+    file = await convertToMP3(file);
   var transcript = await transcribe(file);
   var topics = await entities(transcript);
   var summary = [];
@@ -209,4 +249,4 @@ async function getSummary(file) {
   return result;
 }
 
-getSummary('samples/macro_video_notes_day_1.mp3');
+// getSummary('samples/macro_video_notes_day_1.mp3', 'mp3');
