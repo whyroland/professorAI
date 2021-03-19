@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const path = require('path')
 
 // Import functions in from the other JS files
-const mediatosummary = require(__dirname + "scripts/mediatosummary.js")
+const mediatosummary = require(__dirname + "/public/scripts/mediatosummary.js")
 const youtubesub = require(__dirname + '/public/scripts/youtubesubtitles.js');
 
 // Setup server
