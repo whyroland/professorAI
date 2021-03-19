@@ -6,7 +6,12 @@
     background-color: skyblue;
 }
 
-
+#arrows {
+    display: block;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .text {
     padding: 1% 8%;
@@ -71,3 +76,46 @@
 }
 
 /*          About Us        */
+#pfp1{
+    margin-left: 5%;
+    width: 200px;
+    height: 200px;
+}
+#pfp2{
+    margin-bottom: 10%;
+    margin-left: 5%;
+    width: 200px;
+    height: 200px;
+}
+#pfp3{
+    margin-bottom: 10%;
+    margin-left: 5%;
+    width: 200px;
+    height: 200px;
+}
+#pfp4{
+    margin-bottom: 10%;
+    margin-left: 5%;
+    width: 200px;
+    height: 200px;
+}
+#profile1 {
+    padding-left: 8%;
+    padding-top: 10%;
+    height: 100%;
+}
+#profile2 {
+    padding-left: 5%;
+    padding-top: 10%;
+    height: 100%;
+}
+#profile3 {
+    padding-left: 8%;
+    padding-top: 10%;
+    height: 100%;
+}
+#profile4 {
+    padding-left: 5%;
+    padding-top: 10%;
+    height: 100%;
+}
