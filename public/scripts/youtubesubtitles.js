@@ -1,7 +1,9 @@
-const form = document.getElementById("youtube-form");
+// Any function that you want to be used in other files put it in here
+module.exports = {
+  
+}
 
-console.log("Connected");
-
+/*
 form.onsubmit = function(event) {
   document.getElementById("transcript-text").innerHTML = "https://www.youtube.com/watch?v=6-84CClZ06A&t=6s";
 
@@ -33,7 +35,7 @@ form.onsubmit = function(event) {
       getCaption(xmlDoc);
     });
   });
-}
+}*/
 
 function getXML(res) {
   var begin = res.indexOf("captionTracks");
