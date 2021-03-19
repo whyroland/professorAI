@@ -1,12 +1,12 @@
 $(document).ready(function(){
     var key= "AIzaSyCwv5VEi6c-RusUgGpcpIRMnafhPRnc4UY"
     var video=''
-    $("form").submit(function(event){
-        document.getElementById("videos").length=0
-        event.preventDefault()
-        var query=$("#search").val()
-        vidSearch(key, query,10)
-    })
+    // $("form").submit(function(event){
+    //     document.getElementById("videos").length=0
+    //     event.preventDefault()
+    //     var query=$("#search").val()
+    //     vidSearch(key, query,10)
+    // })
     
 
 

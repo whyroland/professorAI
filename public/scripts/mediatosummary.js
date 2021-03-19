@@ -5,7 +5,7 @@ const language = require('@google-cloud/language');
 
 // Any function that you want to be used in other files put it in here
 module.exports = {
-  getSummary
+  //getSummary
 }
 
 /**
@@ -308,4 +308,5 @@ async function getSummary(file) {
   return summary;
 }
 
-// getSummary('samples/macro_video_notes_day_1.mp3', 'mp3');
+  //getSummary('samples/macro_video_notes_day_1.mp3', 'mp3');
+}
