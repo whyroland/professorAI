@@ -32,9 +32,9 @@ app.post('/getSummaryFromImage', (req, res) => {
     
 });
 
-app.post('/submit', function(req, res) {
-   console.log("ytSubmit success");
-});
+// app.post('/submit', function(req, res) {
+//    console.log("ytSubmit success");
+// });
 
 // Webpages
 app.get("/", function(req, res) {

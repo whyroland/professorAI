@@ -12,9 +12,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
+  <!-- jquery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="../node_modules/request/request.js"></script>
 </head>
 
 <body>
@@ -81,21 +80,21 @@
   </div>
 
 
-  <!-- <form method="POST" action="/submit" id="youtube-form"> -->
+  <form method="POST" action="/submit" id="youtube-form">
     <!-- URL input -->
     <label for="youtube-link">Enter a Youtube link:</label><br>
     <input type="url" id="youtube-link" name="youtube-link" value="https://www.youtube.com/watch?v=6-84CClZ06A&t=6s">
 
     <!-- Submit Button -->
     <input type="submit" id="ytupload-submit" value="Submit" onclick="ytSubmit()">
-  <!-- </form> -->
+  </form>
   
   <script>
     function ytSubmit() {
       var link = $("#youtube-link").val();
       $.ajax({
         type: "POST",
-        url: "/submit",
+        url: "/index.html",
         dataType: 'json',
         data: {ytLink: link},
         cache: false,
@@ -135,10 +134,10 @@
     Are you a visual learner? We have resources available for you too! <br>Search below 
     for one of the keywords that you want to explore and we'll give you the 10 best 
     videos to help you understand it!
-    <form>
+    <!-- <form>
       <input type="text" id="search">
       <br><input type="submit" id="ytvid-submit" value="Explore">
-    </form>
+    </form> -->
 
     <div class="row">
       <div class="col-md-12">
