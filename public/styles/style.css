@@ -1,5 +1,5 @@
 .text {
-    padding: 3% 8%
+    padding: 3% 0%;
 }
 
 #info{
@@ -8,9 +8,14 @@
 
 
 
-#transcript {
-    padding: 1% 0%;
+.text {
+    padding: 1% 8%;
 }
+
+.vidDisplay {
+    padding: 1% 8%;
+}
+
 #transcript-text {
     padding: 1% 1%;
     overflow-y: scroll;
@@ -39,7 +44,7 @@
 
 #pills-tab-nav {
     display:table;
-    width:30%;
+    width: 50%;
     margin: 0;
 }
 
@@ -48,3 +53,21 @@
     display:table-cell;
     text-align:center;
 }
+
+#youtube-link {
+    width: 50%;
+    margin: 1% 0%;
+}
+
+#search {
+    margin: 1% 0%;
+    width: 50%;
+}
+#ytvid-submit {
+    margin-bottom: 2%;
+}
+#videos {
+    min-height: 300px;
+}
+
+/*          About Us        */
