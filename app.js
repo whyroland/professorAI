@@ -1,10 +1,10 @@
 // Setup NPM libraries
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require('path')
+const path = require('path');
 
 // Import functions in from the other JS files
-const mediatosummary = require(__dirname + "/public/scripts/mediatosummary.js")
+const mediatosummary = require(__dirname + "/public/scripts/mediatosummary.js");
 const youtubesub = require(__dirname + '/public/scripts/youtubesubtitles.js');
 
 // Setup server
@@ -15,6 +15,7 @@ const port = process.env.port || 80;
 
 app.set('view engine', 'jade');
 app.use(express.static('public'));
+app.use("/scripts", express.static(path.join(__dirname, 'node_modules/request')));
 
 // Functions (Have diff requests for each file type)
 app.post('/getSummaryFromAudio', (req, res) => {

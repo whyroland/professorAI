@@ -1,22 +1,25 @@
 // Any function that you want to be used in other files put it in here
-module.exports = {
-  
-}
+// module.exports = {
+//   test: function(req, res){
+//     console.log("Hello world.");
+//     res.status(200).end();
+//   }
+// }
 
-/*
-form.onsubmit = function(event) {
-  document.getElementById("transcript-text").innerHTML = "https://www.youtube.com/watch?v=6-84CClZ06A&t=6s";
 
-  event.preventDefault();
-
+function transcript(){
   var request = require("request");
+  document.getElementById("transcript-text").innerHTML = "success";
   var {DOMParser} = require("xmldom");
-
   
-  var link = document.getElementById("youtube-link").value;
+  
+  //link = document.getElementById("youtube-link").value;
   link = "https://www.youtube.com/watch?v=6-84CClZ06A&t=6s";
+
+
   var id;
   var captionURL;
+  var transcript;
   const options1 = {
     url: 'https://www.youtube.com/get_video_info?html5=1&video_id=' + getID(link),
     method: 'GET',
@@ -32,10 +35,11 @@ form.onsubmit = function(event) {
     request(options2, function(err, res, body) {
       var parser = new DOMParser();
       xmlDoc = parser.parseFromString(body, "text/xml");
-      getCaption(xmlDoc);
+      transcript = getCaption(xmlDoc);
     });
   });
-}*/
+  return transcript;
+}
 
 function getXML(res) {
   var begin = res.indexOf("captionTracks");
