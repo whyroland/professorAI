@@ -3,18 +3,18 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 // Import functions in from the other JS files
-const mediatosummary = require(__dirname + "/public/scripts/mediatosummary.js");
-const youtubesub = require(__dirname + '/public/scripts/youtubesubtitles.js');
+//const mediatosummary = require(__dirname + "/public/scripts/mediatosummary.js");
+//const youtubesub = require(__dirname + '/public/scripts/youtubesubtitles.js');
 
 // Setup server
 const app = express();
-app.use(bodyParser.urlencoded({extended: true}));
+// app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json())
 
 const port = process.env.port || 80;
 
 app.set('view engine', 'jade');
 app.use(express.static('public'));
-app.use("/scripts", express.static(path.join(__dirname, 'node_modules/request')));
 
 // Functions (Have diff requests for each file type)
 app.post('/getSummaryFromAudio', (req, res) => {
@@ -31,6 +31,12 @@ app.post('/getSummaryFromText', (req, res) => {
 
 app.post('/getSummaryFromImage', (req, res) => {
     
+});
+
+app.post('/getSummaryFromYoutubeLink', (req, res) => {
+    console.log("Post request received");
+    console.log(req.body.Link[0].link);
+    res.send(JSON.stringify(req.body.Link[0].link)); // sends the link back
 });
 
 // Webpages
