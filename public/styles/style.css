@@ -44,7 +44,9 @@
 }
 
 #container-fluid {
-    padding: 2% 8%;
+    padding-left: 8%;
+    padding-right: 8%;
+    padding-top: 10%;
 }
 
 #pills-tab-nav {
