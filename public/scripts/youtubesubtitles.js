@@ -7,7 +7,8 @@
 // }
 
 
-function transcript(){
+function transcript() {
+  e.preventDefault();
   var request = require("request");
   document.getElementById("transcript-text").innerHTML = "success";
   var {DOMParser} = require("xmldom");

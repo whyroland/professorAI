@@ -15,7 +15,6 @@ const port = process.env.port || 80;
 
 app.set('view engine', 'jade');
 app.use(express.static('public'));
-app.use("/scripts", express.static(path.join(__dirname, 'node_modules/request')));
 
 // Functions (Have diff requests for each file type)
 app.post('/getSummaryFromAudio', (req, res) => {
@@ -32,6 +31,10 @@ app.post('/getSummaryFromText', (req, res) => {
 
 app.post('/getSummaryFromImage', (req, res) => {
     
+});
+
+app.post('/submit', function(req, res) {
+   console.log("ytSubmit success");
 });
 
 // Webpages
