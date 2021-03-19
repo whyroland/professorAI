@@ -1,6 +1,15 @@
+const speech = require('@google-cloud/speech');
+const request = require('request');
+const {Storage} = require('@google-cloud/storage');
+const language = require('@google-cloud/language');
+
+// Any function that you want to be used in other files put it in here
+module.exports = {
+  getSummary
+}
 async function transcribe(file) {
   // Imports the Google Cloud client library
-  const speech = require('@google-cloud/speech');
+  // const speech = require('@google-cloud/speech');
 
   // Credentials
   const projectId = 'linghacks';
@@ -51,7 +60,7 @@ async function transcribe(file) {
 
 async function uploadFile(file) {
   // Imports the Google Cloud client library
-  const {Storage} = require('@google-cloud/storage');
+  // const {Storage} = require('@google-cloud/storage');
 
   // Credentials
   const projectId = 'linghacks';
@@ -83,7 +92,7 @@ async function uploadFile(file) {
 
 async function entities(transcription) {
   // Imports the Google Cloud client library
-  const language = require('@google-cloud/language');
+  // const language = require('@google-cloud/language');
 
   // Credentials
   const projectId = 'linghacks';
@@ -120,7 +129,6 @@ async function entities(transcription) {
 
 function getWiki(query) {
   return new Promise((resolve, reject) => {
-    var request = require('request');
 
     var url = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${query}&format=json`;
     request(url, function (err, response, body) {
@@ -152,7 +160,7 @@ function getWiki(query) {
 
 function getExtract(query) {
   return new Promise((resolve, reject) => {
-    var request = require('request');
+    // var request = require('request');
 
     var url = `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${query}&formatversion=2&exsentences=10&exlimit=1&explaintext=1`;
     request(url, function (err, response, body) {
@@ -173,6 +181,7 @@ function getExtract(query) {
   })
 }
 
+// For MP3s
 async function getSummary(file) {
   var transcript = await transcribe(file);
   var topics = await entities(transcript);
