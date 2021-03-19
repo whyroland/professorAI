@@ -1,20 +1,7 @@
-<<<<<<< HEAD:public/scripts/summary.js
 // Transcribes Audio File
-||||||| 2b6cd83:public/scripts/summary.js
-=======
-const speech = require('@google-cloud/speech');
-const request = require('request');
-const {Storage} = require('@google-cloud/storage');
-const language = require('@google-cloud/language');
-
-// Any function that you want to be used in other files put it in here
-module.exports = {
-  getSummary
-}
->>>>>>> c0122f5640265d5f4545c9ef518f9cbd16697d0b:public/scripts/mediatosummary.js
 async function transcribe(file) {
   // Imports the Google Cloud client library
-  // const speech = require('@google-cloud/speech');
+  const speech = require('@google-cloud/speech');
 
   // Credentials
   const projectId = 'linghacks';
@@ -65,7 +52,7 @@ async function transcribe(file) {
 
 async function uploadFile(file) {
   // Imports the Google Cloud client library
-  // const {Storage} = require('@google-cloud/storage');
+  const {Storage} = require('@google-cloud/storage');
 
   // Credentials
   const projectId = 'linghacks';
@@ -95,48 +82,6 @@ async function uploadFile(file) {
   console.log(`${filename} uploaded to storage bucket.`);
 }
 
-<<<<<<< HEAD:public/scripts/summary.js
-||||||| 2b6cd83:public/scripts/summary.js
-async function entities(transcription) {
-  // Imports the Google Cloud client library
-  const language = require('@google-cloud/language');
-
-  // Credentials
-  const projectId = 'linghacks';
-  const keyFilename = 'LingHacks-7227ba75112d.json';
-
-  // Creates a client
-  const client = new language.LanguageServiceClient({projectId, keyFilename});
-
-  // Text data
-  const text = transcription;
-
-  // Prepares a document, representing the provided text
-  const document = {
-    content: text,
-    type: 'PLAIN_TEXT',
-  };
-=======
-async function entities(transcription) {
-  // Imports the Google Cloud client library
-  // const language = require('@google-cloud/language');
-
-  // Credentials
-  const projectId = 'linghacks';
-  const keyFilename = 'LingHacks-7227ba75112d.json';
-
-  // Creates a client
-  const client = new language.LanguageServiceClient({projectId, keyFilename});
-
-  // Text data
-  const text = transcription;
-
-  // Prepares a document, representing the provided text
-  const document = {
-    content: text,
-    type: 'PLAIN_TEXT',
-  };
->>>>>>> c0122f5640265d5f4545c9ef518f9cbd16697d0b:public/scripts/mediatosummary.js
 
 
 // // Gets Entities for Transcription
@@ -191,6 +136,7 @@ function getKeywords(text) {
 // Gets Wikipedia Link for Topic
 function getWiki(query) {
   return new Promise((resolve, reject) => {
+    var request = require('request');
 
     var url = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${query}&format=json`;
     request(url, function (err, response, body) {
@@ -223,7 +169,7 @@ function getWiki(query) {
 // Gets Wikipedia Page Summary
 function getExtract(query) {
   return new Promise((resolve, reject) => {
-    // var request = require('request');
+    var request = require('request');
 
     var url = `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${query}&formatversion=2&exsentences=10&exlimit=1&explaintext=1`;
     request(url, function (err, response, body) {
@@ -244,7 +190,6 @@ function getExtract(query) {
   })
 }
 
-<<<<<<< HEAD:public/scripts/summary.js
 // // Gets Summary using Google NLP
 // async function getSummary(file) {
 //   // var transcript = await transcribe(file);
@@ -276,10 +221,6 @@ function getExtract(query) {
 // }
 
 // Gets Summary using MonkeyLearn NLP
-||||||| 2b6cd83:public/scripts/summary.js
-=======
-// For MP3s
->>>>>>> c0122f5640265d5f4545c9ef518f9cbd16697d0b:public/scripts/mediatosummary.js
 async function getSummary(file) {
   var transcript = await transcribe(file);
   // // Text data
