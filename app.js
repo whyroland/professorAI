@@ -33,7 +33,8 @@ app.post('/getSummaryFromImage', (req, res) => {
 });
 
 // app.post('/submit', function(req, res) {
-//    console.log("ytSubmit success");
+//    console.log("ytSubmit success" + req.body.ytLink);
+//    res.send("test")
 // });
 
 // Webpages
