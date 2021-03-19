@@ -192,9 +192,12 @@ async function getSummary(file) {
       }
     }
   }
-  summary = new Set(summary);
-  console.log(summary);
-  return summary;
+  var result = Array.from(new Set(summary.map(a => a.title)))
+  .map(title => {
+    return summary.find(a => a.title === title)
+  })
+  console.log(result);
+  return result;
 }
 
-getSummary('samples/macro_video_notes_day_2.mp3');
+getSummary('samples/macro_video_notes_day_1.mp3');
