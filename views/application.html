@@ -3,8 +3,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>Application</title>
-  <link rel="stylesheet" href="styles/bootstrap.min.css">
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="../public/styles/style.css">
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
@@ -134,10 +133,14 @@
     Are you a visual learner? We have resources available for you too! <br>Search below 
     for one of the keywords that you want to explore and we'll give you the 10 best 
     videos to help you understand it!
-    <!-- <form>
-      <input type="text" id="search">
-      <br><input type="submit" id="ytvid-submit" value="Explore">
-    </form> -->
+    <form id="vidSearch">
+      <div class="form-group">
+        <input type="text" class="form-control" id="search">
+      </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Explore">
+      </div>
+    </form>
 
     <div class="row">
       <div class="col-md-12">
@@ -164,10 +167,10 @@ integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQO
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<script src="agency.js"></script>
+<script src="../agency.js"></script>
 
 <!-- javascript files -->
-<script src="scripts/main.js"></script>
-<script src="scripts/ytVideos.js"></script>
+<script src="../public/scripts/main.js"></script>
+<script src="../public/scripts/ytVideos.js"></script>
 
 </html>
