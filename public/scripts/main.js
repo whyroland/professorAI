@@ -24,7 +24,7 @@ youtubeLinkForm.onsubmit = function(event) {
         type: 'POST',
         success: function (data) {
           console.log("data: " + data);
-          document.getElementByTagName("transcript-text").contentWindow.document.body.write("<html><head></head><body>test</body></html>");
+          document.getElementById("yt-transcript-text").innerHTML = data;
         }
     });
     console.log("Data successfully sent to backend: youtube link");

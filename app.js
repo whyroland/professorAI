@@ -81,16 +81,17 @@ app.post('/getSummaryFromYoutubeLink', async (req, res) => {
     var transcript = await youtubesub.transcript(link);
     var summary = await mediatosummary.getInfo(transcript);
     console.log(summary);
-        res.type('html');
-        res.write("<h1>Transcript</h1>");
-        res.write("<p>"+summary.transcript+"</p>");
-        res.write("<h1>Topics</h1>");
-        for(var i=0; i< summary.topics.length; i++) {
-            res.write("<h3>"+summary.topics[i].title+"</h3>");
-            res.write("<p>"+summary.topics[i].summary+"</p>");
-            res.write("<a href=\""+ summary.topics[i].link + "\" target=_blank>"+summary.topics[i].link+"</a>")
-        }
-        res.end();
+    res.send(JSON.stringify(summary));
+    // res.type('html');
+    // res.write("<h1>Transcript</h1>");
+    // res.write("<p>"+summary.transcript+"</p>");
+    // res.write("<h1>Topics</h1>");
+    // for(var i=0; i< summary.topics.length; i++) {
+    //     res.write("<h3>"+summary.topics[i].title+"</h3>");
+    //     res.write("<p>"+summary.topics[i].summary+"</p>");
+    //     res.write("<a href=\""+ summary.topics[i].link + "\" target=_blank>"+summary.topics[i].link+"</a>")
+    // }
+    // res.end();
 });
 
 

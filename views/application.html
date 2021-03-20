@@ -48,7 +48,7 @@
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-file" role="tabpanel" aria-labelledby="pills-file-tab">
         <div id="file-upload">
-          <form ref="uploadForm" id="uploadForm" method="POST" action="/mp4tomp3" enctype="multipart/form-data" target="transcript-text">
+          <form ref="uploadForm" id="uploadForm" method="POST" action="/mp4tomp3" enctype="multipart/form-data" target="file-transcript-text">
             <!-- Upload File -->
             <label for="file">Select an audio file:</label><br>
             <input type="file" id="mp4" name="mp4">
@@ -66,6 +66,14 @@
 
           </form>
         </div>
+
+        <div id="file-transcript">
+          <h3>Transcript:</h3>
+          <iframe id="file-transcript-text" name="file-transcript-text">
+            
+    
+          </iframe>
+        </div>
       </div>
 
 
@@ -82,21 +90,18 @@
             <input type="submit" id="ytupload-submit" value="Submit">
           </form>
         </div>
+
+        <div id="yt-transcript">
+          <h3>Transcript:</h3>
+          <div id="yt-transcript-text" name="yt-transcript-text">
+            
+    
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
-
-
-  <div class="text">
-    <div id="transcript">
-      <h3>Transcript:</h3>
-      <iframe id="transcript-text" name="transcript-text">
-        
-
-      </iframe>
-    </div>
-
+  
   <div class="vidDisplay">
     <h3>Suggested Videos</h3>
     Are you a visual learner? We have resources available for you too! <br>Search below
