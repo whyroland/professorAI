@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const ffmpeg = require('fluent-ffmpeg');
 const fs = require('fs');
 const speech = require('@google-cloud/speech');
@@ -37,34 +36,6 @@ function convertToMP3(videoFile) {
 
 
 // Transcribes Audio File
-||||||| effe22d
-// Transcribes Audio File
-=======
-const speech = require('@google-cloud/speech');
-const request = require('request');
-const {Storage} = require('@google-cloud/storage');
-const language = require('@google-cloud/language');
-const ffmpeg = require("ffmpeg");
-
-// Any function that you want to be used in other files put it in here
-module.exports = {
-  transcribe
-}
-
-/**
- * Converts an MP4 into an MP3
- * @param {} file 
- */
-async function convertToMP3(file) {
-
-}
-
-/**
- * Gets the transcript from an MP3 file
- * @param {} file 
- * @returns 
- */
->>>>>>> 7bda78edd4d2bbfcbdaf588dfd47aa9e2857a45e
 async function transcribe(file) {
   // Credentials
   const projectId = 'linghacks';
@@ -234,18 +205,11 @@ function getKeywords(text) {
   });
 }
 
-<<<<<<< HEAD
-// Gets Wikipedia Link for Topic
-||||||| effe22d
-
-// Gets Wikipedia Link for Topic
-=======
 /**
  * Webscrapes Wikipedia for pages on the terms
  * @param {} query 
  * @returns 
  */
->>>>>>> 7bda78edd4d2bbfcbdaf588dfd47aa9e2857a45e
 function getWiki(query) {
   return new Promise((resolve, reject) => {
     var url = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${query}&format=json`;
@@ -375,13 +339,6 @@ async function getSummary(videoFile) {
   })
 
   return summary;
-}
+}}
 
-<<<<<<< HEAD
 getSummary('samples/datastructures_sample_vid_1.mp4');
-||||||| effe22d
-getSummary('samples/macro_video_notes_day_1.mp3');
-=======
-  //getSummary('samples/macro_video_notes_day_1.mp3', 'mp3');
-}
->>>>>>> 7bda78edd4d2bbfcbdaf588dfd47aa9e2857a45e
