@@ -22,6 +22,13 @@
     "@google-cloud/storage": "^5.8.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+<<<<<<< HEAD
+    "fluent-ffmpeg": "^2.1.2",
+    "jade": "^0.29.0",
+    "monkeylearn": "^3.4.0",
+||||||| effe22d
+    "jade": "^1.11.0",
+=======
     "express-fileupload": "^1.2.1",
     "ffmpeg": "0.0.4",
     "fluent-ffmpeg": "^2.1.2",
@@ -29,7 +36,12 @@
     "jade": "^1.11.0",
     "jquery": "^3.6.0",
     "jspdf": "^2.3.1",
+>>>>>>> 7bda78edd4d2bbfcbdaf588dfd47aa9e2857a45e
     "pug": "^3.0.2",
+    "textrazor": "^2.1.0",
+    "tmp": "^0.2.1",
+    "tmp-promise": "^3.0.2",
+    "video-converter": "^1.0.0",
     "xhr2": "^0.2.1",
     "xmldom": "^0.5.0",
     "xmlhttprequest": "^1.8.0",
