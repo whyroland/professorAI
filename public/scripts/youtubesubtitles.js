@@ -4,6 +4,7 @@ module.exports = {
   
 }
 
+transcript();
 
 function transcript() {
   //console.log(link);
@@ -31,9 +32,11 @@ function transcript() {
       var parser = new DOMParser();
       xmlDoc = parser.parseFromString(body, "text/xml");
       transcript = getCaption(xmlDoc);
+      console.log(transcript);
     });
   });
-  return "test";
+  
+  return transcript;
 }
 
 function getXML(res) {
