@@ -339,6 +339,7 @@ async function getSummary(videoFile) {
   })
 
   return summary;
-}}
+}
 
 getSummary('samples/datastructures_sample_vid_1.mp4');
+}
