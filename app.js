@@ -5,6 +5,7 @@ const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
 const fileUpload = require("express-fileupload");
+const fs = require("fs");
 
 // Import functions in from the other JS files
 const mediatosummary = require(__dirname + "/public/scripts/mediatosummary.js");
@@ -28,6 +29,9 @@ app.use(fileUpload({
 //Functions (Have diff requests for each file type)
 app.post('/mp4tomp3', async (req, res) => {
     var file = req.body.File[0].file;
+    file = file.replace("C:\\fakepath\\", "") //Ex: transcript-test.mp4
+    console.log(file);
+
     var summary = await mediatosummary.getSummary(file)
     console.log(summary)
     res.send(JSON.stringify(summary))

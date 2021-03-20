@@ -48,7 +48,7 @@
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-file" role="tabpanel" aria-labelledby="pills-file-tab">
         <div id="file-upload">
-          <form ref="uploadForm" id="uploadForm" encType="multipart/form-data" method="POST" action="/mp4tomp3">
+          <form ref="uploadForm" id="uploadForm" encType="multipart/form-data">
             <!-- Upload File -->
             <label for="file">Select an audio file:</label><br>
             <input type="file" id="mp4" name="mp4">
@@ -72,7 +72,7 @@
       <div class="tab-pane fade" id="pills-youtube" role="tabpanel" aria-labelledby="pills-youtube-tab">
         <div id="youtube-upload">
 
-          <form method="POST" action="/getSummaryFromYoutubeLink" id="youtube-form">
+          <form id="youtube-form">
             <!-- URL input -->
             <label for="youtube-link">Enter a Youtube link:</label><br>
             <input type="url" id="youtube-link" name="youtube-link"
