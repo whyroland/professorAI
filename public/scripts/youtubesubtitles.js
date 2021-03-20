@@ -1,40 +1,66 @@
 //Any function that you want to be used in other files put it in here
 module.exports = {
-  transcript: function () {
-    return "test";
-  }
+  transcript
 }
+transcript("");
 
-function transcript() {
-  //console.log(link);
-  //if(typeof link === 'undefined') {
-    link = "https://www.youtube.com/watch?v=BeQIv_pRxas";
-  //}
-  var request = require("request");
-  var {DOMParser} = require("xmldom");
-
+async function transcript(link) {
+  // if(typeof link === 'undefined') {
+    link = "hhttps://www.youtube.com/watch?v=rxWVeN0w6vI";
+  // }
   var captionURL;
   var transcript;
-  const options1 = {
-    url: 'https://www.youtube.com/get_video_info?html5=1&video_id=' + getID(link),
-    method: 'GET',
-  };
-  request(options1, function(err, res, body) {
-    captionURL = getXML(body);
-    var i = captionURL.indexOf("https");
-    captionURL = captionURL.substring(i, captionURL.length-1);
+  var request = require("request");
+  var {DOMParser} = require("xmldom");
+  var parser = new DOMParser();
+
+
+  captionURL = await r1(link, request);
+  transcript = await r2(captionURL, request, parser);
+  return transcript;
+}
+
+function r1(link, request) {
+  return new Promise(function (resolve, reject) {
+    const options1 = {
+      url: 'https://www.youtube.com/get_video_info?html5=1&video_id=' + getID(link),
+      method: 'GET',
+    };
+    request(options1, function(err, res, body) {
+      if(err) { 
+        reject(err);
+      }
+      else {
+        captionURL = getXML(body);
+        var i = captionURL.indexOf("https");
+        captionURL = captionURL.substring(i, captionURL.length-1);
+        resolve(captionURL);
+      }
+    });
+  });
+}
+
+function r2(captionURL, request, parser) {
+  return new Promise(function (resolve, reject) {
     const options2 = {
       url: captionURL,
       method: 'GET',
     };
     request(options2, function(err, res, body) {
-      var parser = new DOMParser();
-      xmlDoc = parser.parseFromString(body, "text/xml");
-      transcript = getCaption(xmlDoc);
-      console.log(transcript);
+      if(err) { 
+        reject(err);
+      }
+      else {
+        xmlDoc = parser.parseFromString(body, "text/xml");
+        transcript = getCaption(xmlDoc);
+        //console.log(transcript);
+        resolve(transcript);
+      }
     });
   });
 }
+
+
 
 
 

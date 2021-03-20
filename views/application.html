@@ -44,15 +44,13 @@
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-file" role="tabpanel" aria-labelledby="pills-file-tab">
         <div id="file-upload">
-          <form>
+          <form ref="uploadForm" id="uploadForm" encType="multipart/form-data" method = "POST" action="/mp4tomp3">
             <!-- Upload File -->
-            <div>
-              <label for="audiofile">Select an audio file:</label><br>
-              <input type="file" id="audiofile" name="audiofile">
-            </div>
-      
+            <label for="file">Select an audio file:</label><br>
+            <input type="file" id="mp4" name="mp4">
+            <input type="submit" value="Convert">
             <!-- File Type-->
-            <div>
+            <!-- <div>
               <br><label for="audio-type">Type:</label>
               <select name="audio-type" id="audio-type">
                 <option value="mp3">MP3</option>
@@ -60,12 +58,8 @@
                 <option value="aac">AAC</option>
                 <option value="flac">FLAC</option>
               </select>
-            </div>
-      
-            <!-- Submit Button -->
-            <div>
-              <br><input type="submit" value="Submit">
-            </div>
+            </div> -->
+    
           </form>
         </div>
       </div>
@@ -80,7 +74,7 @@
   </div>
 
 
-  <form method="POST" action="/submit" id="youtube-form">
+  <form method="POST" action="/getSummaryFromYoutubeLink" id="youtube-form">
     <!-- URL input -->
     <label for="youtube-link">Enter a Youtube link:</label><br>
     <input type="url" id="youtube-link" name="youtube-link" value="https://www.youtube.com/watch?v=6-84CClZ06A&t=6s">
@@ -156,6 +150,6 @@ integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQO
 
 <!-- javascript files -->
 <script src="/scripts/main.js"></script>
-<script src="/scripts/ytVideos.js"></script>
+<script src="/scripts/ytvideos.js"></script>
 
 </html>
