@@ -7,15 +7,6 @@ $(document).ready(function(){
         var query=$("#search").val()
         vidSearch(key, query, 10)
     })
-    $("#youtube-form").submit(function(event){
-        document.getElementById("videos").length=0
-        event.preventDefault()
-        var q1="";
-        var q2;
-        vidSearch(key, q1, 5)
-        vidSearch(key, q2, 5)
-    })
-    
 
 
     function vidSearch(apiKey, query, results){
