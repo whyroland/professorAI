@@ -6,49 +6,61 @@ transcript("");
 
 async function transcript(link) {
   // if(typeof link === 'undefined') {
-     link = "hhttps://www.youtube.com/watch?v=rxWVeN0w6vI";
+    link = "hhttps://www.youtube.com/watch?v=rxWVeN0w6vI";
   // }
-  var request = require("request");
-  var {DOMParser} = require("xmldom");
-
   var captionURL;
   var transcript;
-  
-  jQuery.ajax({
-    url: 'https://www.youtube.com/get_video_info?html5=1&video_id=' + getID(link),
-    cache: false,
-    contentType: "application/json; charset=utf-8",
-    processData: false,
-    method: 'GET',
-    type: 'GET',
-    success: function (data) {
-      console.log("data: " + data);
-    }
-});
-  
-  return "caption";
+  var request = require("request");
+  var {DOMParser} = require("xmldom");
+  var parser = new DOMParser();
+
+
+  captionURL = await r1(link, request);
+  transcript = await r2(captionURL, request, parser);
+  return transcript;
+}
+
+function r1(link, request) {
+  return new Promise(function (resolve, reject) {
+    const options1 = {
+      url: 'https://www.youtube.com/get_video_info?html5=1&video_id=' + getID(link),
+      method: 'GET',
+    };
+    request(options1, function(err, res, body) {
+      if(err) { 
+        reject(err);
+      }
+      else {
+        captionURL = getXML(body);
+        var i = captionURL.indexOf("https");
+        captionURL = captionURL.substring(i, captionURL.length-1);
+        resolve(captionURL);
+      }
+    });
+  });
+}
+
+function r2(captionURL, request, parser) {
+  return new Promise(function (resolve, reject) {
+    const options2 = {
+      url: captionURL,
+      method: 'GET',
+    };
+    request(options2, function(err, res, body) {
+      if(err) { 
+        reject(err);
+      }
+      else {
+        xmlDoc = parser.parseFromString(body, "text/xml");
+        transcript = getCaption(xmlDoc);
+        //console.log(transcript);
+        resolve(transcript);
+      }
+    });
+  });
 }
 
 
-// const options1 = {
-//   url: 'https://www.youtube.com/get_video_info?html5=1&video_id=' + getID(link),
-//   method: 'GET',
-// };
-// request(options1, function(err, res, body) {
-//   captionURL = getXML(body);
-//   var i = captionURL.indexOf("https");
-//   captionURL = captionURL.substring(i, captionURL.length-1);
-//   const options2 = {
-//     url: captionURL,
-//     method: 'GET',
-//   };
-//   request(options2, function(err, res, body) {
-//     var parser = new DOMParser();
-//     xmlDoc = parser.parseFromString(body, "text/xml");
-//     transcript = getCaption(xmlDoc);
-//     console.log(transcript);
-//   });
-// });
 
 
 
