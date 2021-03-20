@@ -39,7 +39,7 @@ app.post('/getSummaryFromYoutubeLink', (req, res) => {
     console.log("Post request received");
     var link = req.body.Link[0].link;
     console.log(link);
-    youtubesub.transcript();
+    //youtubesub.transcript();
     res.send(JSON.stringify(req.body.Link[0].link)); 
 });
 
