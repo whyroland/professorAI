@@ -3,14 +3,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>Application</title>
-  <link rel="stylesheet" href="styles/bootstrap.min.css">
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="/styles/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles/style.css">
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -41,15 +44,13 @@
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-file" role="tabpanel" aria-labelledby="pills-file-tab">
         <div id="file-upload">
-          <form>
+          <form ref="uploadForm" id="uploadForm" encType="multipart/form-data" method = "POST" action="/mp4tomp3">
             <!-- Upload File -->
-            <div>
-              <label for="audiofile">Select an audio file:</label><br>
-              <input type="file" id="audiofile" name="audiofile">
-            </div>
-      
+            <label for="file">Select an audio file:</label><br>
+            <input type="file" id="mp4" name="mp4">
+            <input type="submit" value="Convert">
             <!-- File Type-->
-            <div>
+            <!-- <div>
               <br><label for="audio-type">Type:</label>
               <select name="audio-type" id="audio-type">
                 <option value="mp3">MP3</option>
@@ -57,12 +58,8 @@
                 <option value="aac">AAC</option>
                 <option value="flac">FLAC</option>
               </select>
-            </div>
-      
-            <!-- Submit Button -->
-            <div>
-              <br><input type="submit" value="Submit">
-            </div>
+            </div> -->
+    
           </form>
         </div>
       </div>
@@ -70,23 +67,21 @@
 
       <div class="tab-pane fade" id="pills-youtube" role="tabpanel" aria-labelledby="pills-youtube-tab">
         <div id="youtube-upload">
-          <form id="youtube-form">
-            <!-- URL input -->
-            <label for="youtube-link">Enter a Youtube link:</label><br>
-            <input type="url" id="youtube-link" name="youtube-link" value="https://www.youtube.com/watch?v=6-84CClZ06A&t=6s">
-
-            <!-- Submit Button -->
-            <div>
-              <input id="youtube-submit" type="submit" onclick="">
-            </div>
-            <!-- link this^ to click() function in getSubtitles.js -->
-          </form>
+          
         </div>
       </div>
     </div>
   </div>
 
-  
+
+  <form method="POST" action="/getSummaryFromYoutubeLink" id="youtube-form">
+    <!-- URL input -->
+    <label for="youtube-link">Enter a Youtube link:</label><br>
+    <input type="url" id="youtube-link" name="youtube-link" value="https://www.youtube.com/watch?v=6-84CClZ06A&t=6s">
+
+    <!-- Submit Button -->
+    <input type="submit" id="ytupload-submit" value="Submit">
+  </form>
 
   <div class="text">
     <div id="transcript">
@@ -117,9 +112,13 @@
     Are you a visual learner? We have resources available for you too! <br>Search below 
     for one of the keywords that you want to explore and we'll give you the 10 best 
     videos to help you understand it!
-    <form>
-      <input type="text" id="search">
-      <br><input type="submit" id="ytvid-submit" value="Explore">
+    <form id="vidSearch">
+      <div class="form-group">
+        <input type="text" class="form-control" id="search">
+      </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Explore">
+      </div>
     </form>
 
     <div class="row">
@@ -143,8 +142,14 @@ integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/N
 integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous">
 </script>
 
+<!-- extensions -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="/scripts/agency.js"></script>
+
 <!-- javascript files -->
-<script src="scripts/getSubtitles.js"></script>
-<script src="scripts/ytVideos.js"></script>
+<script src="/scripts/main.js"></script>
+<script src="/scripts/ytvideos.js"></script>
 
 </html>

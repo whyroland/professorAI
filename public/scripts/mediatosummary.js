@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const ffmpeg = require('fluent-ffmpeg');
 const fs = require('fs');
 const speech = require('@google-cloud/speech');
@@ -36,6 +37,34 @@ function convertToMP3(videoFile) {
 
 
 // Transcribes Audio File
+||||||| effe22d
+// Transcribes Audio File
+=======
+const speech = require('@google-cloud/speech');
+const request = require('request');
+const {Storage} = require('@google-cloud/storage');
+const language = require('@google-cloud/language');
+const ffmpeg = require("ffmpeg");
+
+// Any function that you want to be used in other files put it in here
+module.exports = {
+  transcribe
+}
+
+/**
+ * Converts an MP4 into an MP3
+ * @param {} file 
+ */
+async function convertToMP3(file) {
+
+}
+
+/**
+ * Gets the transcript from an MP3 file
+ * @param {} file 
+ * @returns 
+ */
+>>>>>>> 7bda78edd4d2bbfcbdaf588dfd47aa9e2857a45e
 async function transcribe(file) {
   // Credentials
   const projectId = 'linghacks';
@@ -61,6 +90,7 @@ async function transcribe(file) {
     encoding: encoding,
     sampleRateHertz: sampleRateHertz,
     languageCode: languageCode,
+    //enableAutomaticPunctation: true,
   };
 
   const audio = {
@@ -84,6 +114,10 @@ async function transcribe(file) {
   return transcription
 }
 
+/**
+ * Uploads the file to use
+ * @param {} file 
+ */
 async function uploadFile(file) {
   // Credentials
   const projectId = 'linghacks';
@@ -113,6 +147,35 @@ async function uploadFile(file) {
   console.log(`${filename} uploaded to storage bucket.`);
 }
 
+/**
+ * Gets the keywords from the transcript
+ * @param {*} transcription 
+ * @returns 
+ */
+async function entities(transcription) {
+  // Imports the Google Cloud client library
+  // const language = require('@google-cloud/language');
+
+  // Credentials
+  const projectId = 'linghacks';
+  const keyFilename = 'LingHacks-7227ba75112d.json';
+
+  // Creates a client
+  const client = new language.LanguageServiceClient({projectId, keyFilename});
+
+  // Text data
+  const text = transcription;
+
+  // Prepares a document, representing the provided text
+  const document = {
+    content: text,
+    type: 'PLAIN_TEXT',
+  };
+
+  // Detects entities in the document
+  const [result] = await client.analyzeEntities({document});
+
+  const entities = result.entities;
 
 
 // // Gets Entities for Transcription
@@ -171,7 +234,18 @@ function getKeywords(text) {
   });
 }
 
+<<<<<<< HEAD
 // Gets Wikipedia Link for Topic
+||||||| effe22d
+
+// Gets Wikipedia Link for Topic
+=======
+/**
+ * Webscrapes Wikipedia for pages on the terms
+ * @param {} query 
+ * @returns 
+ */
+>>>>>>> 7bda78edd4d2bbfcbdaf588dfd47aa9e2857a45e
 function getWiki(query) {
   return new Promise((resolve, reject) => {
     var url = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${query}&format=json`;
@@ -202,7 +276,11 @@ function getWiki(query) {
   });
 }
 
-// Gets Wikipedia Page Summary
+/**
+ * Obtains summary on the wikipedia pages
+ * @param {} query 
+ * @returns 
+ */
 function getExtract(query) {
   return new Promise((resolve, reject) => {
     var url = `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${query}&formatversion=2&exsentences=10&exlimit=1&explaintext=1`;
@@ -299,4 +377,11 @@ async function getSummary(videoFile) {
   return summary;
 }
 
+<<<<<<< HEAD
 getSummary('samples/datastructures_sample_vid_1.mp4');
+||||||| effe22d
+getSummary('samples/macro_video_notes_day_1.mp3');
+=======
+  //getSummary('samples/macro_video_notes_day_1.mp3', 'mp3');
+}
+>>>>>>> 7bda78edd4d2bbfcbdaf588dfd47aa9e2857a45e
