@@ -1,10 +1,9 @@
 //Any function that you want to be used in other files put it in here
 module.exports = {
-  transcript: transcript()
-  
+  transcript: function () {
+    return "test";
+  }
 }
-
-transcript();
 
 function transcript() {
   //console.log(link);
@@ -35,9 +34,9 @@ function transcript() {
       console.log(transcript);
     });
   });
-  
-  return transcript;
 }
+
+
 
 function getXML(res) {
   var begin = res.indexOf("captionTracks");
