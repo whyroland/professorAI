@@ -7,6 +7,7 @@ $(document).ready(function(){
         var query=$("#search").val()
         vidSearch(key, query, 10)
     })
+    
 
 
     function vidSearch(apiKey, query, results){

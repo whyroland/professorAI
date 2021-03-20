@@ -82,12 +82,13 @@ app.post('/getSummaryFromImage', (req, res) => {
 });
 
 app.post('/getSummaryFromYoutubeLink', async (req, res) => {
-    console.log("Post request received");
+    console.log("Post request received: /getSummaryFromYoutubeLink");
     var link = req.body.Link[0].link;
     console.log(link);
     var transcript = await youtubesub.transcript(link);
     res.send(JSON.stringify(transcript)); 
 });
+
 
 // Webpages
 app.get("/", function(req, res) {

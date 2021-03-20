@@ -234,18 +234,18 @@ function getKeywords(text) {
   });
 }
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 // Gets Wikipedia Link for Topic
-||||||| effe22d
+//||||||| effe22d
 
 // Gets Wikipedia Link for Topic
-=======
+//=======
 /**
  * Webscrapes Wikipedia for pages on the terms
  * @param {} query 
  * @returns 
  */
->>>>>>> 7bda78edd4d2bbfcbdaf588dfd47aa9e2857a45e
+//>>>>>>> 7bda78edd4d2bbfcbdaf588dfd47aa9e2857a45e
 function getWiki(query) {
   return new Promise((resolve, reject) => {
     var url = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${query}&format=json`;
