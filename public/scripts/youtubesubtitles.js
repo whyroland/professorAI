@@ -26,7 +26,7 @@ async function transcript(link) {
     }
 });
   
-  return captionURL;
+  return "caption";
 }
 
 
