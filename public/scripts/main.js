@@ -25,6 +25,6 @@ youtubeLinkForm.onsubmit = function(event) {
         success: function (data) {
           console.log(data);
         }
-      });
-      console.log("Data successfully sent to backend");
+    });
+    console.log("Data successfully sent to backend");
 }

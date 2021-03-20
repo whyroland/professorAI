@@ -1,24 +1,18 @@
-// Any function that you want to be used in other files put it in here
-// module.exports = {
-//   test: function(req, res){
-//     console.log("Hello world.");
-//     res.status(200).end();
-//   }
-// }
+//Any function that you want to be used in other files put it in here
+module.exports = {
+  transcript: transcript()
+  
+}
 
 
 function transcript() {
-  e.preventDefault();
+  //console.log(link);
+  //if(typeof link === 'undefined') {
+    link = "https://www.youtube.com/watch?v=BeQIv_pRxas";
+  //}
   var request = require("request");
-  document.getElementById("transcript-text").innerHTML = "success";
   var {DOMParser} = require("xmldom");
-  
-  
-  //link = document.getElementById("youtube-link").value;
-  link = "https://www.youtube.com/watch?v=6-84CClZ06A&t=6s";
 
-
-  var id;
   var captionURL;
   var transcript;
   const options1 = {
@@ -39,7 +33,7 @@ function transcript() {
       transcript = getCaption(xmlDoc);
     });
   });
-  return transcript;
+  return "test";
 }
 
 function getXML(res) {
@@ -55,28 +49,18 @@ function getXML(res) {
   return captionTrack;
 }
 
-var HTML_captions = "";
 function getCaption(data) {
+  var HTML_captions = "";
   try {
     for (var i = 0; i < data.getElementsByTagName("transcript")[0].childNodes.length; i++) {
       var sentence = data.getElementsByTagName("transcript")[0].childNodes[i].childNodes[0].nodeValue + "\n";
       HTML_captions += fixSpacing(sentence);
     }
-
-    fillData();
+    return HTML_captions;
 
   } catch (err) {
     console.log(err);
     alert('Error at getCaption function - see console form more details.');
-  }
-}
-
-function fillData() {
-  try {
-    document.getElementById("transcript-text").innerHTML = HTML_captions;
-  } catch (err) {
-    console.log(err);
-    alert('Error at fillData function - see console form more details.');
   }
 }
 
