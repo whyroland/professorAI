@@ -1,6 +1,7 @@
 //Any function that you want to be used in other files put it in here
 module.exports = {
-  getSummary
+  getSummary,
+  getInfo
 }
 
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
@@ -196,7 +197,6 @@ function getExtract(query) {
   });
 }
 
-// Gets Summary using TextRazor NLP
 async function getSummary(videoFile) {
   console.log('Video File: ' + videoFile);
   var filename = videoFile.split('/');
@@ -206,6 +206,26 @@ async function getSummary(videoFile) {
   await convertToMP3(videoFile);
   console.log();
   var transcript = await transcribe(audioFile);
+  var summary = getInfo(transcript);
+  const path = audioFile;
+  fs.unlink(path, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    //audioFile removed
+  });
+  fs.unlink(videoFile, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    //videoFile removed
+  })
+  return summary;
+}
+// Gets Summary using TextRazor NLP
+async function getInfo(transcript) {
   var topics = await getKeywords(transcript);
   var summary = {};
   summary.transcript = transcript;
@@ -228,15 +248,6 @@ async function getSummary(videoFile) {
   console.log();
   console.log('Summary: ')
   console.log(summary);
-
-  const path = audioFile;
-  fs.unlink(path, (err) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-    //audioFile removed
-  });
 
   return summary;
 }
