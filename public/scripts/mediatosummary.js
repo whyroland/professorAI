@@ -205,24 +205,11 @@ function getKeywords(text) {
   });
 }
 
-<<<<<<< HEAD
-//<<<<<<< HEAD
-// Gets Wikipedia Link for Topic
-//||||||| effe22d
-
-// Gets Wikipedia Link for Topic
-//=======
-=======
->>>>>>> 975807c955fc3c7ff747b82be78d46631a5e9504
 /**
  * Webscrapes Wikipedia for pages on the terms
  * @param {} query 
  * @returns 
  */
-<<<<<<< HEAD
-//>>>>>>> 7bda78edd4d2bbfcbdaf588dfd47aa9e2857a45e
-=======
->>>>>>> 975807c955fc3c7ff747b82be78d46631a5e9504
 function getWiki(query) {
   return new Promise((resolve, reject) => {
     var url = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${query}&format=json`;
