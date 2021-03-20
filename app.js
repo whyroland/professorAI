@@ -22,35 +22,56 @@ app.use(express.static('public'));
 //configure fileupload middleware
 app.use(fileUpload({
     useTempFile: true,
-    truetempFileDir:"/tmp/"
+    truetempFileDir: "/tmp/"
 }))
-
 
 //Functions (Have diff requests for each file type)
 app.post('/mp4tomp3', async (req, res) => {
-    var file = req.body.File[0].file;
-    file = file.replace("C:\\fakepath\\", "") //Ex: transcript-test.mp4
-    console.log(file);
+    if (req.files) {
+        console.log(req.files);
+        var file = req.files.mp4;
+        console.log(file);
+        var filename = file.name;
+        console.log(filename);
 
-    var summary = await mediatosummary.getSummary(file)
-    console.log(summary)
-    res.send(JSON.stringify(summary))
+        file.mv('./tmp/' + filename, function (err) {
+            if (err) {
+                console.log(err);
+            }
+        });
+        var summary = await mediatosummary.getSummary("tmp/" + filename);
+        console.log(summary);
+        res.type('html');
+        res.write("<h1>Transcript</h1>");
+        res.write("<p>"+summary.transcript+"</p>");
+        res.write("<h1>Topics</h1>");
+        for(var i=0; i< summary.topics.length; i++) {
+            res.write("<h3>"+summary.topics[i].title+"</h3>");
+            res.write("<p>"+summary.topics[i].summary+"</p>");
+            res.write("<a href=\""+ summary.topics[i].link +">"+summary.topics[i].link+"</a>")
+        }
+        res.end();
+    }
+    else {
+        console.log('Error');
+    }
+
 });
 
 app.post('/getSummaryFromAudio', (req, res) => {
-    
+
 });
 
 app.post('/getSummaryFromVideo', (req, res) => {
-    
+
 });
 
 app.post('/getSummaryFromText', (req, res) => {
-    
+
 });
 
 app.post('/getSummaryFromImage', (req, res) => {
-    
+
 });
 
 app.post('/getSummaryFromYoutubeLink', async (req, res) => {
@@ -58,27 +79,27 @@ app.post('/getSummaryFromYoutubeLink', async (req, res) => {
     var link = req.body.Link[0].link;
     console.log(link);
     var transcript = await youtubesub.transcript(link);
-    res.send(JSON.stringify(transcript)); 
+    res.send(JSON.stringify(transcript));
 });
 
 
 // Webpages
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
     console.log(req.url + "@" + Date() + " User connected to the Website");
     res.render('index');
 });
 
-app.get("/application", function(req, res) {
+app.get("/application", function (req, res) {
     console.log(req.url + "@" + Date() + " User requested to use application");
     res.render('application');
 });
 
-app.get("/about", function(req, res) {
+app.get("/about", function (req, res) {
     console.log(req.url + "@" + Date() + " User requested to use about");
     res.render('about');
 });
 
-app.get("/index", function(req, res) {
+app.get("/index", function (req, res) {
     console.log(req.url + "@" + Date() + " User requested to use homepage");
     res.render('index');
 });

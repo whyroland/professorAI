@@ -31,30 +31,36 @@ youtubeLinkForm.onsubmit = function(event) {
 }
 
 
-const uploadForm = document.getElementById("uploadForm");
-const mp4 = document.getElementById("mp4");
-uploadForm.onsubmit = function(event) {
+// const uploadForm = document.getElementById("uploadForm");
+// const mp4 = document.getElementById("mp4");
 
-  event.preventDefault();
+// uploadForm.onsubmit = function(event) {
 
-  console.log("mp4 file: " + mp4.value);
+//   event.preventDefault();
 
-  var jsonData = [{ "file": mp4.value }];
+//   console.log("mp4 file: " + mp4.value);
 
-  console.log(jsonData);
 
-  jQuery.ajax({
-      url: '/mp4tomp3',
-      dataType: "json",
-      data: JSON.stringify({File: jsonData}),
-      cache: false,
-      contentType: "application/json; charset=utf-8",
-      processData: false,
-      method: 'POST',
-      type: 'POST',
-      success: function (data) {
-        console.log("data: " + data);
-      }
-  });
-  console.log("Data successfully sent to backend: file upload");
-}
+//   // var jsonData = [{ "file": mp4.value}];
+//   // //var jsonData = [{ "file": mp4.files[0]}];
+
+//   // console.log(jsonData);
+
+
+
+//   jQuery.ajax({
+//       url: '/mp4tomp3',
+//       dataType: "json",
+//       data: JSON.stringify(jsonData),
+//       cache: false,
+//       contentType: "application/json; charset=utf-8",
+//       processData: false,
+//       enctype: "multipart/form-data",
+//       method: 'POST',
+//       type: 'POST',
+//       success: function (data) {
+//         console.log("data: " + data);
+//       }
+//   });
+//   console.log("Data successfully sent to backend: file upload");
+// }

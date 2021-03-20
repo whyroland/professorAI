@@ -241,4 +241,4 @@ async function getSummary(videoFile) {
   return summary;
 }
 
-getSummary('samples/transcript-test.mp4');
+//getSummary('samples/transcript-test.mp4');

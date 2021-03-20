@@ -48,7 +48,7 @@
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-file" role="tabpanel" aria-labelledby="pills-file-tab">
         <div id="file-upload">
-          <form ref="uploadForm" id="uploadForm" encType="multipart/form-data">
+          <form ref="uploadForm" id="uploadForm" method="POST" action="/mp4tomp3" enctype="multipart/form-data" target="transcript-text">
             <!-- Upload File -->
             <label for="file">Select an audio file:</label><br>
             <input type="file" id="mp4" name="mp4">
@@ -91,11 +91,10 @@
   <div class="text">
     <div id="transcript">
       <h3>Transcript:</h3>
-      <div id="transcript-text">
-        abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz
-        abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz
+      <iframe id="transcript-text" name="transcript-text">
+        
 
-      </div>
+      </iframe>
     </div>
 
 
