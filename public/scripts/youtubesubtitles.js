@@ -2,12 +2,11 @@
 module.exports = {
   transcript
 }
-transcript("");
 
 async function transcript(link) {
-  // if(typeof link === 'undefined') {
-    link = "hhttps://www.youtube.com/watch?v=rxWVeN0w6vI";
-  // }
+  if(typeof link === 'undefined') {
+    link = "https://www.youtube.com/watch?v=rxWVeN0w6vI";
+  }
   var captionURL;
   var transcript;
   var request = require("request");
