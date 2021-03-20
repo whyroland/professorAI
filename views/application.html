@@ -44,15 +44,13 @@
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-file" role="tabpanel" aria-labelledby="pills-file-tab">
         <div id="file-upload">
-          <form>
+          <form ref="uploadForm" id="uploadForm" encType="multipart/form-data" method = "POST" action="/mp4tomp3">
             <!-- Upload File -->
-            <div>
-              <label for="audiofile">Select an audio file:</label><br>
-              <input type="file" id="audiofile" name="audiofile">
-            </div>
-      
+            <label for="file">Select an audio file:</label><br>
+            <input type="file" id="mp4" name="mp4">
+            <input type="submit" value="Convert">
             <!-- File Type-->
-            <div>
+            <!-- <div>
               <br><label for="audio-type">Type:</label>
               <select name="audio-type" id="audio-type">
                 <option value="mp3">MP3</option>
@@ -60,12 +58,8 @@
                 <option value="aac">AAC</option>
                 <option value="flac">FLAC</option>
               </select>
-            </div>
-      
-            <!-- Submit Button -->
-            <div>
-              <br><input type="submit" value="Submit">
-            </div>
+            </div> -->
+    
           </form>
         </div>
       </div>
@@ -151,7 +145,8 @@ integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQO
 <script src="agency.js"></script>
 
 <!-- javascript files -->
-<script src="scripts/main.js"></script>
-<script src="scripts/ytVideos.js"></script>
+<script src="../scripts/main.js"></script>
+<script src="../scripts/ytVideos.js"></script>
+<script src="../scripts/youtubesubtitles.js"></script>
 
 </html>

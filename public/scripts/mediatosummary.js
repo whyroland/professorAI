@@ -2,10 +2,11 @@ const speech = require('@google-cloud/speech');
 const request = require('request');
 const {Storage} = require('@google-cloud/storage');
 const language = require('@google-cloud/language');
+const ffmpeg = require("ffmpeg");
 
 // Any function that you want to be used in other files put it in here
 module.exports = {
-  //getSummary
+  transcribe
 }
 
 /**
@@ -49,6 +50,7 @@ async function transcribe(file) {
     encoding: encoding,
     sampleRateHertz: sampleRateHertz,
     languageCode: languageCode,
+    //enableAutomaticPunctation: true,
   };
 
   const audio = {

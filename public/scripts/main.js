@@ -23,7 +23,8 @@ youtubeLinkForm.onsubmit = function(event) {
         method: 'POST',
         type: 'POST',
         success: function (data) {
-          console.log(data);
+          console.log("data: " + data);
+          document.getElementById("transcript-text").innerHTML = data;
         }
     });
     console.log("Data successfully sent to backend");

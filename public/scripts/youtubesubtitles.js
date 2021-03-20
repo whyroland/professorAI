@@ -1,40 +1,54 @@
 //Any function that you want to be used in other files put it in here
 module.exports = {
-  transcript: function () {
-    return "test";
-  }
+  transcript
 }
+transcript("");
 
-function transcript() {
-  //console.log(link);
-  //if(typeof link === 'undefined') {
-    link = "https://www.youtube.com/watch?v=BeQIv_pRxas";
-  //}
+async function transcript(link) {
+  // if(typeof link === 'undefined') {
+     link = "hhttps://www.youtube.com/watch?v=rxWVeN0w6vI";
+  // }
   var request = require("request");
   var {DOMParser} = require("xmldom");
 
   var captionURL;
   var transcript;
-  const options1 = {
+  
+  jQuery.ajax({
     url: 'https://www.youtube.com/get_video_info?html5=1&video_id=' + getID(link),
+    cache: false,
+    contentType: "application/json; charset=utf-8",
+    processData: false,
     method: 'GET',
-  };
-  request(options1, function(err, res, body) {
-    captionURL = getXML(body);
-    var i = captionURL.indexOf("https");
-    captionURL = captionURL.substring(i, captionURL.length-1);
-    const options2 = {
-      url: captionURL,
-      method: 'GET',
-    };
-    request(options2, function(err, res, body) {
-      var parser = new DOMParser();
-      xmlDoc = parser.parseFromString(body, "text/xml");
-      transcript = getCaption(xmlDoc);
-      console.log(transcript);
-    });
-  });
+    type: 'GET',
+    success: function (data) {
+      console.log("data: " + data);
+    }
+});
+  
+  return captionURL;
 }
+
+
+// const options1 = {
+//   url: 'https://www.youtube.com/get_video_info?html5=1&video_id=' + getID(link),
+//   method: 'GET',
+// };
+// request(options1, function(err, res, body) {
+//   captionURL = getXML(body);
+//   var i = captionURL.indexOf("https");
+//   captionURL = captionURL.substring(i, captionURL.length-1);
+//   const options2 = {
+//     url: captionURL,
+//     method: 'GET',
+//   };
+//   request(options2, function(err, res, body) {
+//     var parser = new DOMParser();
+//     xmlDoc = parser.parseFromString(body, "text/xml");
+//     transcript = getCaption(xmlDoc);
+//     console.log(transcript);
+//   });
+// });
 
 
 
