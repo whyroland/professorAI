@@ -9,7 +9,8 @@ const fs = require("fs");
 
 // Import functions in from the other JS files
 const mediatosummary = require(__dirname + "/public/scripts/mediatosummary.js");
-const youtubesub = require(__dirname + "/public/scripts/youtubesubtitles.js")
+const youtubesub = require(__dirname + "/public/scripts/youtubesubtitles.js");
+const askprofessor = require(__dirname + "/public/scripts/askprofessor.js");
 
 // Setup server
 const app = express();
@@ -75,7 +76,10 @@ app.post('/getSummaryFromImage', (req, res) => {
 });
 
 app.post('/getAnswer', (req, res) => {
-    
+    (async () => {
+        var data = await askprofessor.askQuestion(req.body.Question[0].question);
+        res.send(JSON.stringify(data)); // Sends the results
+    })()
 });
 
 app.post('/getSummaryFromYoutubeLink', async (req, res) => {
