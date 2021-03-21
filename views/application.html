@@ -37,7 +37,6 @@
                             <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Image</a></li>
                             <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-4">YouTube Link</a></li>
                             <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-5">Keywords</a></li>
-                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-6">TXT</a></li>
                             <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-7">Plaintext</a></li>
                         </ul>
                         <div class="tab-content">
@@ -59,7 +58,7 @@
                             </div>
                             <div class="tab-pane text-center" role="tabpanel" id="tab-3">
                                 <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload a .png/.jpeg./jpg/.heic image file below</h1>
-                                <form method="POST" action="/uploadImage" enctype="multipart/form-data" target="transcript-text">
+                                <form method="POST" action="/uploadIMG" enctype="multipart/form-data" target="transcript-text" id="imgForm">
                                   <input type="file" id="img" name="img" class="form-margin" style="font-family: 'Inter';">
                                   <input class="btn btn-primary" type="submit" style="font-family: 'Inter';margin-left: 1rem;" value="Upload">
                                 </form>
@@ -80,13 +79,6 @@
                                   <input type="submit" class="btn btn-primary" style="font-family: 'Inter';margin-left: 1rem;" value="Submit">
                                 </form>
                                 <p style="margin-top: 1rem;">Note: Separate words with commas</p>
-                            </div>
-                            <div class="tab-pane text-center" role="tabpanel" id="tab-6">
-                                <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload a .txt text file below</h1>
-                                <form method="POST" action="/uploadTXT" enctype="application/x-www-form-urlencoded" target="transcript-text" class="form-margin">
-                                  <input id="txt" name="txt" type="file" style="font-family: 'Inter';">
-                                  <input type="submit" class="btn btn-primary" style="font-family: 'Inter';margin-left: 1rem;" value="Upload">
-                                </form>
                             </div>
                             <div class="tab-pane text-center" role="tabpanel" id="tab-7">
                                 <h1 class="small-margin" style="margin-bottom: 1rem;">Please paste your article in plaintext in the area below</h1>
@@ -142,23 +134,22 @@
                     <div class="col-sm-6 col-md-3 item">
                         <h3>Contact Us</h3>
                         <ul>
-                            <li><a href="#">Webpage</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#"></a></li>
+                            <li><a href="https://brcode.online/">Webpage</a></li>
+                            <li><a href="about">About Us</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-6 col-md-3 item">
                         <h3>Open Source</h3>
                         <ul>
-                            <li><a href="#">DevPost</a></li>
-                            <li><a href="#">GitHub</a></li>
+                            <li><a href="https://devpost.com/software/professorai">DevPost</a></li>
+                            <li><a href="https://github.com/erice04/linghacks">GitHub</a></li>
                         </ul>
                     </div>
                     <div class="col-md-6 item text">
                         <h3>professorAI</h3>
                         <p>This project was made as apart of LingHacks3 2021 by members of the Bridgewater-Raritan High School Code Club!</p>
                     </div>
-                    <div class="col item social"><a href="#"><i class="icon ion-university"></i></a><a href="#"><i class="icon ion-ios-heart"></i></a><a href="#"><i class="icon ion-email"></i></a><a href="#"><i class="icon ion-social-github"></i></a></div>
+                    <div class="col item social"><a href="https://hs.brrsd.org/"><i class="icon ion-university"></i></a><a href="https://devpost.com/software/professorai"><i class="icon ion-ios-heart"></i></a><a href="https://brcode.online/"><i class="icon ion-email"></i></a><a href="https://github.com/erice04/linghacks"><i class="icon ion-social-github"></i></a></div>
                 </div>
                 <p class="copyright"><br><strong>© professorAI 2021 BRHS CODE CLUB</strong><br></p>
             </div>

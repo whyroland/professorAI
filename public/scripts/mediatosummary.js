@@ -1,5 +1,6 @@
 //Any function that you want to be used in other files put it in here
 module.exports = {
+  transcribeImage,
   getSummaryFromVideo,
   getSummaryFromAudio,
   getInfo,
@@ -12,6 +13,7 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 const fs = require('fs');
 const speech = require('@google-cloud/speech');
 const {Storage} = require('@google-cloud/storage');
+const vision = require('@google-cloud/vision');
 const TextRazor = require('textrazor');
 const request = require('request');
 const news = require(__dirname + "/newsscraper.js");
@@ -92,6 +94,24 @@ async function transcribe(file) {
   .join('. ');
   console.log('transcription generated')
   return transcription
+}
+
+async function transcribeImage(image) {
+  // Credentials
+  const projectId = 'linghacks';
+  const keyFilename = 'LingHacks-7227ba75112d.json';
+
+  // Creates a client
+  const client = new vision.ImageAnnotatorClient({projectId, keyFilename});
+
+  const fileName = image;
+
+  // Performs text detection on the local file
+  const [result] = await client.textDetection(fileName);
+  const detections = result.textAnnotations;
+  let finalText = '';
+  detections.forEach(text => finalText += text);
+  return finalText;
 }
 
 /**
@@ -242,7 +262,7 @@ async function getInfo(transcript) {
   
   console.log();
   console.log('Summary: ')
-  console.log(summary);
+  // console.log(summary);
   
 
   return summary;
@@ -256,7 +276,7 @@ async function getTopics(topics, summary) {
     if (title.length > 0) {
       var extract = await getExtract(title);
       if (extract.length > 0 && !extract.includes('may refer to:')) {
-        var currevents = await news.getArticles(title.replace(/_/g, ' '), 3);
+        var currevents = await news.getArticles(title.replace(/_/g, ' '), 1);
         summary.topics.push({
           title: title.replace(/_/g, ' '),
           summary: extract,

@@ -113,6 +113,10 @@
   background-color: #266bf6;
 }
 
+.hero-animated {
+  animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
 #headline {
   color: white;
   font-family: 'Inter';
