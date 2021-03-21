@@ -264,4 +264,12 @@ async function getTopics(summary) {
   return summary.topics;
 }
 
+async function tokenize(str, delims) {
+  var tokens = [];
+  var word = "";
+  for(var i=0; i<stringify.length(); i++) {
+    
+  }
+}
+
 //getSummary('samples/transcript-test.mp4');
