@@ -42,7 +42,7 @@ app.post('/mp4tomp3', async (req, res) => {
         var summary = await mediatosummary.getSummary("tmp/" + filename);
         console.log(summary);
         res.type('html');
-        res.write("<h1>Summary</h1>");
+        res.write("<h1>Transcript</h1>");
         res.write("<p>"+summary.transcript+"</p><br><br>");
         res.write("<h1>Topics</h1>");
         for(var i=0; i< summary.topics.length; i++) {
@@ -81,7 +81,7 @@ app.post('/getSummaryFromYoutubeLink', async (req, res) => {
     var transcript = await youtubesub.transcript(link);
     var summary = await mediatosummary.getInfo(transcript);
     var result = "";
-    result += "<h3>Summary</h3>";
+    result += "<h3>Transcript</h3>";
     result += "<p>"+summary.transcript+"</p><br><br>";
     result += "<h3>Topics</h3>";
     for(var i=0; i< summary.topics.length; i++) {
