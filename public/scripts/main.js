@@ -1,21 +1,56 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+// // This is where we will connect the application to the backend
+// const youtubeLinkForm = document.getElementById("youtube-form");
+// const youtubeLink = document.getElementById("youtube-link");
+
+// // sends the link in form of a json
+// youtubeLinkForm.onsubmit = function(event) {
+
+//     event.preventDefault();
+
+//     console.log("youtubeLink: " + youtubeLink.value);
+
+//     var jsonData = [{ "link": youtubeLink.value }];
+
+//     console.log(jsonData);
+
+//     jQuery.ajax({
+//         url: '/getSummaryFromYoutubeLink',
+//         dataType: "json",
+//         data: JSON.stringify({Link: jsonData}),
+//         cache: false,
+//         contentType: "application/json; charset=utf-8",
+//         processData: false,
+//         method: 'POST',
+//         type: 'POST',
+//         success: function (data) {
+//           console.log("data: " + data);
+//           document.getElementById("yt-transcript-text").innerHTML = data;
+//         }
+//     });
+//     console.log("Data successfully sent to backend: youtube link");
+// }
+
+>>>>>>> parent of f3832a9 (Merge branch 'main' of https://github.com/erice04/linghacks into main)
 // This is where we will connect the application to the backend
-const youtubeLinkForm = document.getElementById("youtube-form");
-const youtubeLink = document.getElementById("youtube-link");
+const form = document.getElementById("question-form");
+const input = document.getElementById("question-input");
 
 // sends the link in form of a json
-youtubeLinkForm.onsubmit = function(event) {
+form.onsubmit = function (event) {
 
     event.preventDefault();
 
-    console.log("youtubeLink: " + youtubeLink.value);
+    console.log("input: " + input.value);
 
-    var jsonData = [{ "link": youtubeLink.value }];
+    var jsonData = [{ "question": input.value }];
 
     console.log(jsonData);
 
     jQuery.ajax({
-        url: '/getSummaryFromYoutubeLink',
+        url: '/getAnswer',
         dataType: "json",
         data: JSON.stringify({Link: jsonData}),
         cache: false,
@@ -25,12 +60,12 @@ youtubeLinkForm.onsubmit = function(event) {
         type: 'POST',
         success: function (data) {
           console.log("data: " + data);
-          document.getElementById("yt-transcript-text").innerHTML = data;
         }
     });
-    console.log("Data successfully sent to backend: youtube link");
+    console.log("Data successfully sent to backend: question");
 }
 
+<<<<<<< HEAD
 // const uploadForm = document.getElementById("uploadForm");
 // const mp4 = document.getElementById("mp4");
 =======
@@ -67,34 +102,39 @@ youtubeLinkForm.onsubmit = function(event) {
 // }
 
 >>>>>>> parent of 3b9c18e (Merge branch 'main' of https://github.com/erice04/linghacks into main)
+=======
+>>>>>>> parent of f3832a9 (Merge branch 'main' of https://github.com/erice04/linghacks into main)
 
-// uploadForm.onsubmit = function(event) {
+// // const uploadForm = document.getElementById("uploadForm");
+// // const mp4 = document.getElementById("mp4");
 
-//   event.preventDefault();
+// // uploadForm.onsubmit = function(event) {
 
-//   console.log("mp4 file: " + mp4.value);
+// //   event.preventDefault();
 
-
-//   // var jsonData = [{ "file": mp4.value}];
-//   // //var jsonData = [{ "file": mp4.files[0]}];
-
-//   // console.log(jsonData);
-
+// //   console.log("mp4 file: " + mp4.value);
 
 
-//   jQuery.ajax({
-//       url: '/mp4tomp3',
-//       dataType: "json",
-//       data: JSON.stringify(jsonData),
-//       cache: false,
-//       contentType: "application/json; charset=utf-8",
-//       processData: false,
-//       enctype: "multipart/form-data",
-//       method: 'POST',
-//       type: 'POST',
-//       success: function (data) {
-//         console.log("data: " + data);
-//       }
-//   });
-//   console.log("Data successfully sent to backend: file upload");
-// }
+// //   // var jsonData = [{ "file": mp4.value}];
+// //   // //var jsonData = [{ "file": mp4.files[0]}];
+
+// //   // console.log(jsonData);
+
+
+
+// //   jQuery.ajax({
+// //       url: '/mp4tomp3',
+// //       dataType: "json",
+// //       data: JSON.stringify(jsonData),
+// //       cache: false,
+// //       contentType: "application/json; charset=utf-8",
+// //       processData: false,
+// //       enctype: "multipart/form-data",
+// //       method: 'POST',
+// //       type: 'POST',
+// //       success: function (data) {
+// //         console.log("data: " + data);
+// //       }
+// //   });
+// //   console.log("Data successfully sent to backend: file upload");
+// // }
