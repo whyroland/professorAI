@@ -1,17 +1,9 @@
 //Any function that you want to be used in other files put it in here
 module.exports = {
-<<<<<<< HEAD
-<<<<<<< HEAD
   getSummaryFromVideo,
   getSummaryFromAudio,
   getInfo,
   getTopics
-=======
-=======
->>>>>>> parent of 3c5c7df (Merge branch 'main' of https://github.com/erice04/linghacks into main)
-  getSummary,
-  getInfo
->>>>>>> parent of 3c5c7df (Merge branch 'main' of https://github.com/erice04/linghacks into main)
 }
 
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
@@ -72,7 +64,7 @@ async function transcribe(file) {
   const encoding = 'CBR';
   const sampleRateHertz = 48000;
   const languageCode = 'en-US';
- 
+
   const config = {
     encoding: encoding,
     sampleRateHertz: sampleRateHertz,
@@ -103,7 +95,7 @@ async function transcribe(file) {
 
 /**
  * Uploads the file to use
- * @param {} file 
+ * @param {} file
  */
 async function uploadFile(file) {
   // Credentials
@@ -148,8 +140,8 @@ function getKeywords(text) {
 
 /**
  * Webscrapes Wikipedia for pages on the terms
- * @param {} query 
- * @returns 
+ * @param {} query
+ * @returns
  */
 function getWiki(query) {
   return new Promise((resolve, reject) => {
@@ -183,8 +175,8 @@ function getWiki(query) {
 
 /**
  * Obtains summary on the wikipedia pages
- * @param {} query 
- * @returns 
+ * @param {} query
+ * @returns
  */
 function getExtract(query) {
   return new Promise((resolve, reject) => {
@@ -207,7 +199,7 @@ function getExtract(query) {
   });
 }
 
-async function getSummary(videoFile) {
+async function getSummaryFromVideo(videoFile) {
   console.log('Video File: ' + videoFile);
   var filename = videoFile.split('/');
   filename = filename[filename.length-1].split('.')[0];
@@ -215,6 +207,18 @@ async function getSummary(videoFile) {
   console.log('Audio File: ' + audioFile);
   await convertToMP3(videoFile);
   console.log();
+  var summary = await getSummaryFromAudio(audioFile);
+  fs.unlink(videoFile, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    //videoFile removed
+  })
+  return summary;
+}
+
+async function getSummaryFromAudio(audioFile) {
   var transcript = await transcribe(audioFile);
   var summary = getInfo(transcript);
   const path = audioFile;
@@ -225,13 +229,6 @@ async function getSummary(videoFile) {
     }
     //audioFile removed
   });
-  fs.unlink(videoFile, (err) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-    //videoFile removed
-  })
   return summary;
 }
 // Gets Summary using TextRazor NLP
@@ -265,14 +262,6 @@ async function getTopics(summary) {
     }
   }
   return summary.topics;
-}
-
-async function tokenize(str, delims) {
-  var tokens = [];
-  var word = "";
-  for(var i=0; i<stringify.length(); i++) {
-    
-  }
 }
 
 //getSummary('samples/transcript-test.mp4');
