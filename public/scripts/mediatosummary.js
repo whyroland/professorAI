@@ -1,17 +1,9 @@
 //Any function that you want to be used in other files put it in here
 module.exports = {
-<<<<<<< HEAD
-<<<<<<< HEAD
   getSummaryFromVideo,
   getSummaryFromAudio,
   getInfo,
   getTopics
-=======
-=======
->>>>>>> parent of 3c5c7df (Merge branch 'main' of https://github.com/erice04/linghacks into main)
-  getSummary,
-  getInfo
->>>>>>> parent of 3c5c7df (Merge branch 'main' of https://github.com/erice04/linghacks into main)
 }
 
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
@@ -207,7 +199,7 @@ function getExtract(query) {
   });
 }
 
-async function getSummary(videoFile) {
+async function getSummaryFromVideo(videoFile) {
   console.log('Video File: ' + videoFile);
   var filename = videoFile.split('/');
   filename = filename[filename.length-1].split('.')[0];
@@ -215,6 +207,18 @@ async function getSummary(videoFile) {
   console.log('Audio File: ' + audioFile);
   await convertToMP3(videoFile);
   console.log();
+  var summary = await getSummaryFromAudio(audioFile);
+  fs.unlink(videoFile, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    //videoFile removed
+  })
+  return summary;
+}
+
+async function getSummaryFromAudio(audioFile) {
   var transcript = await transcribe(audioFile);
   var summary = getInfo(transcript);
   const path = audioFile;
@@ -225,13 +229,6 @@ async function getSummary(videoFile) {
     }
     //audioFile removed
   });
-  fs.unlink(videoFile, (err) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-    //videoFile removed
-  })
   return summary;
 }
 // Gets Summary using TextRazor NLP
@@ -239,16 +236,18 @@ async function getInfo(transcript) {
   var topics = await getKeywords(transcript);
   var summary = {};
   summary.transcript = transcript;
-  summary.topics = await getTopics(summary);
+  summary.topics = [];
+  summary.topics = await getTopics(topics, summary);
+  
   console.log();
   console.log('Summary: ')
   console.log(summary);
+  
 
   return summary;
 }
 
-async function getTopics(summary) {
-  summary.topics = [];
+async function getTopics(topics, summary) {
   for (var i = 0; i < 20; i++) {
     var wiki = await getWiki(topics[i].label);
     var title = wiki.split('/');
