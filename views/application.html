@@ -1,157 +1,147 @@
 <!DOCTYPE html>
+<html class="text-center">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>Application</title>
-  <link rel="stylesheet" href="/styles/bootstrap.min.css">
-  <link rel="stylesheet" href="/styles/style.css">
-
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <!-- jquery-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>professorAIApplication</title>
+    <link rel="stylesheet" href="/assetsapplication/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assetsapplication/css/Inter.css">
+    <link rel="stylesheet" href="/assetsapplication/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="/assetsapplication/css/Footer-Dark.css">
+    <link rel="stylesheet" href="/assetsapplication/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="/assetsapplication/css/styles.css">
 </head>
 
-<body>
-  <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav">
-    <div class="container"><a class="navbar-brand" href="index">Name</a><button data-toggle="collapse"
-        data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i
-          class="fa fa-bars"></i></button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto text-uppercase">
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="application">Application</a></li>
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="about">About Us</a></li>
-        </ul>
-      </div>
+<body class="text-left">
+    <nav class="navbar navbar-light navbar-expand-md shadow flex-grow-1 justify-content-between navigation-clean-search">
+        <div class="container"><img class="img-fluid" src="/assetsapplication/img/professorailogonocolorBLACK.png" width="25%"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
+                <ul class="nav navbar-nav flex-grow-1 justify-content-start">
+                    <li class="nav-item" role="presentation"><a class="nav-link" id="navitem" href="index" style="color: rgb(0,0,0);">Home</a></li>
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" id="navitem" href="about" style="color: rgb(0,0,0);">About Us</a></li>
+                </ul><a class="btn btn-primary border rounded action-button" role="button" href="application" style="filter: brightness(100%) saturate(100%);">Get Started</a></div>
+        </div>
+    </nav>
+    <section>
+        <div class="container">
+            <div class="row" id="doublemargin">
+                <div class="col">
+                    <div>
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-1">MP4</a></li>
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">MP3</a></li>
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Image</a></li>
+                            <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-4">YouTube Link</a></li>
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-5">Keywords</a></li>
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-6">TXT</a></li>
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-7">Plaintext</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane text-center" role="tabpanel" id="tab-1">
+                                <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload a .mp4 video file below</h1>
+                                <form><input type="file" class="form-margin" style="font-family: 'Inter';"><button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">Submit</button></form>
+                                <p style="margin-top: 1rem;">Note: Larger files may take longer to analyze</p>
+                            </div>
+                            <div class="tab-pane text-center" role="tabpanel" id="tab-2">
+                                <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload a .mp3 audio file below</h1>
+                                <form><input type="file" class="form-margin" style="font-family: 'Inter';"><button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">Submit</button></form>
+                                <p style="margin-top: 1rem;">Note: Larger files may take longer to analyze</p>
+                            </div>
+                            <div class="tab-pane text-center" role="tabpanel" id="tab-3">
+                                <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload a .png/.jpeg./jpg/.heic image file below</h1>
+                                <form><input type="file" class="form-margin" style="font-family: 'Inter';"><button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">Submit</button></form>
+                                <p style="margin-top: 1rem;">Note: Unclear files may not yield accurate results</p>
+                            </div>
+                            <div class="tab-pane active text-center" role="tabpanel" id="tab-4">
+                                <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload a valid YouTube link below</h1>
+                                <form class="form-margin"><input class="form-control form-margin" type="text"><button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">Submit</button></form>
+                                <p style="margin-top: 1rem;">Note: Longer videos and/or private videos may not yield accurate results</p>
+                            </div>
+                            <div class="tab-pane text-center" role="tabpanel" id="tab-5">
+                                <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload keywords below</h1>
+                                <form><input class="form-control form-margin" type="text"><button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">Submit</button></form>
+                                <p style="margin-top: 1rem;">Note: Separate words with commas</p>
+                            </div>
+                            <div class="tab-pane text-center" role="tabpanel" id="tab-6">
+                                <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload a .txt text file below</h1>
+                                <form class="form-margin"><input type="file" style="font-family: 'Inter';"><button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">Submit</button></form>
+                            </div>
+                            <div class="tab-pane text-center" role="tabpanel" id="tab-7">
+                                <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload your article in plaintext in the area below</h1>
+                                <form class="form-margin"><textarea class="form-control form-margin"></textarea><button class="btn btn-primary" type="submit" style="font-family: 'Inter';margin-left: 1rem;">Submit</button></form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section></section>
+    <section>
+        <div class="container">
+            <div class="row" id="doublemargin">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Result Name</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Result Data</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="doublemargin">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <form><input class="form-control" type="email" style="margin-top: 1rem;margin-bottom: 1rem;"><button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">Email Your Notes</button></form>
+                </div>
+                <div class="col text-center d-xl-flex justify-content-xl-center align-items-xl-center"><button class="btn btn-primary text-center" type="button" style="font-family: 'Inter';">Save Results as PDF</button></div>
+            </div>
+            <div class="row text-center">
+                <div class="col">
+                    <p id="topmargin" style="font-family: 'Inter';">Please be aware that when saving your results, you must have inputted a valid file above first</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row" style="margin-top: 5rem!important;">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li><a href="#">Webpage</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Open Source</h3>
+                        <ul>
+                            <li><a href="#">DevPost</a></li>
+                            <li><a href="#">GitHub</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3>professorAI</h3>
+                        <p>This project was made as apart of LingHacks3 2021 by members of the Bridgewater-Raritan High School Code Club!</p>
+                    </div>
+                    <div class="col item social"><a href="#"><i class="icon ion-university"></i></a><a href="#"><i class="icon ion-ios-heart"></i></a><a href="#"><i class="icon ion-email"></i></a><a href="#"><i class="icon ion-social-github"></i></a></div>
+                </div>
+                <p class="copyright"><br><strong>© professorAI 2021 BRHS CODE CLUB</strong><br></p>
+            </div>
+        </footer>
     </div>
-  </nav>
-
-
-  <div id="container-fluid">
-    <ul class="nav nav-pills mb-5" id="pills-tab-nav" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="pills-file-tab" data-bs-toggle="pill" data-bs-target="#pills-file"
-          type="button" role="tab" aria-controls="pills-file" aria-selected="true">Upload File</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-youtube-tab" data-bs-toggle="pill" data-bs-target="#pills-youtube"
-          type="button" role="tab" aria-controls="pills-youtube" aria-selected="false">Upload Youtube Link</button>
-      </li>
-    </ul>
-
-    <div class="tab-content" id="pills-tabContent">
-      <div class="tab-pane fade show active" id="pills-file" role="tabpanel" aria-labelledby="pills-file-tab">
-        <div id="file-upload">
-          <form ref="uploadForm" id="uploadForm" method="POST" action="/mp4tomp3" enctype="multipart/form-data" target="file-transcript-text">
-            <!-- Upload File -->
-            <label for="file">Select an audio file:</label><br>
-            <input type="file" id="mp4" name="mp4">
-            <input type="submit" value="Convert">
-            <!-- File Type-->
-            <!-- <div>
-              <br><label for="audio-type">Type:</label>
-              <select name="audio-type" id="audio-type">
-                <option value="mp3">MP3</option>
-                <option value="wav">WAV</option>
-                <option value="aac">AAC</option>
-                <option value="flac">FLAC</option>
-              </select>
-            </div> -->
-
-          </form>
-          <p>Note: Large videos will take longer to process.</p>
-        </div>
-
-        <div id="file-transcript">
-          <h3>Summary:</h3>
-          <iframe id="file-transcript-text" name="file-transcript-text">
-            
-    
-          </iframe>
-        </div>
-      </div>
-
-
-      <div class="tab-pane fade" id="pills-youtube" role="tabpanel" aria-labelledby="pills-youtube-tab">
-        <div id="youtube-upload">
-
-          <form id="youtube-form">
-            <!-- URL input -->
-            <label for="youtube-link">Enter a Youtube link:</label><br>
-            <input type="url" id="youtube-link" name="youtube-link"
-              value="https://www.youtube.com/watch?v=6-84CClZ06A&t=6s">
-
-            <!-- Submit Button -->
-            <input type="submit" id="ytupload-submit" value="Submit">
-          </form>
-          <p>Note: Must be a valid youtube link with recognizable language.</p>
-          
-        </div>
-
-        <button id="generatePDF">Generate PDF</button>
-
-        <div id="yt-transcript">
-          <h3>Summary:</h3>
-          <div id="yt-transcript-text" name="yt-transcript-text">
-            
-    
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="vidDisplay">
-    <h3>Suggested Videos</h3>
-    Are you a visual learner? We have resources available for you too! <br>Search below
-    for one of the keywords that you want to explore and we'll give you the best
-    videos to help you understand it!
-    <form id="vidSearch">
-      <div class="form-group">
-        <input type="text" class="form-control" id="search">
-      </div>
-      <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Explore">
-      </div>
-    </form>
-
-    <div class="row">
-      <div class="col-md-12">
-        <div id="videos">
-
-        </div>
-      </div>
-    </div>
-
-  </div>
+    <script src="/assetsapplication/js/jquery.min.js"></script>
+    <script src="/assetsapplication/bootstrap/js/bootstrap.min.js"></script>
 </body>
-
-<!-- popper -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
-  integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous">
-  </script>
-
-<!-- bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
-  integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous">
-  </script>
-
-<!-- extensions -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
-<script src="/scripts/agency.js"></script>
-
-<!-- javascript files -->
-<script src="/scripts/main.js"></script>
-<script src="/scripts/ytvideos.js"></script>
-<script src="/scripts/pdf.js"></script>
 
 </html>
