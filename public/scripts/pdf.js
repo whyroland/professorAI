@@ -1,7 +1,7 @@
 document.getElementById("generatePDF").addEventListener("click", function() {
     var doc = new jsPDF();
-
-    var elementHTML = $('#yt-transcript-text').html();
+    console.log("generatePDF clicked")
+    var elementHTML = $('#transcript-text').html();
     console.log(elementHTML);
     doc.fromHTML(elementHTML, 15, 15, {
         'width': 170,
