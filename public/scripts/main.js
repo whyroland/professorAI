@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // This is where we will connect the application to the backend
 const youtubeLinkForm = document.getElementById("youtube-form");
 const youtubeLink = document.getElementById("youtube-link");
@@ -32,6 +33,40 @@ youtubeLinkForm.onsubmit = function(event) {
 
 // const uploadForm = document.getElementById("uploadForm");
 // const mp4 = document.getElementById("mp4");
+=======
+// // This is where we will connect the application to the backend
+// const youtubeLinkForm = document.getElementById("youtube-form");
+// const youtubeLink = document.getElementById("youtube-link");
+
+// // sends the link in form of a json
+// youtubeLinkForm.onsubmit = function(event) {
+
+//     event.preventDefault();
+
+//     console.log("youtubeLink: " + youtubeLink.value);
+
+//     var jsonData = [{ "link": youtubeLink.value }];
+
+//     console.log(jsonData);
+
+//     jQuery.ajax({
+//         url: '/getSummaryFromYoutubeLink',
+//         dataType: "json",
+//         data: JSON.stringify({Link: jsonData}),
+//         cache: false,
+//         contentType: "application/json; charset=utf-8",
+//         processData: false,
+//         method: 'POST',
+//         type: 'POST',
+//         success: function (data) {
+//           console.log("data: " + data);
+//           document.getElementById("yt-transcript-text").innerHTML = data;
+//         }
+//     });
+//     console.log("Data successfully sent to backend: youtube link");
+// }
+
+>>>>>>> parent of 3b9c18e (Merge branch 'main' of https://github.com/erice04/linghacks into main)
 
 // uploadForm.onsubmit = function(event) {
 
