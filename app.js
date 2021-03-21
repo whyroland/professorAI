@@ -1,7 +1,7 @@
 // Setup NPM libraries
 const express = require("express");
 const bodyParser = require("body-parser");
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path.replace('app.asar', 'app.asar.unpacked'); // require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
 const fileUpload = require("express-fileupload");
@@ -158,8 +158,9 @@ app.post('/uploadKeyWords', async (req, res) => {
     console.log("Post request received: /uploadKeyWords");
     console.log(req.body);
     var keyWordString = req.body["keyWords"];
-    //var topics = mediatosummary.tokenize(keyWordString); //return array
-    getTopics(keyWordString, summary)
+    var topics = mediatosummary.tokenize(keyWordString); //return array
+    var summary = {};
+    summary.topics = await getTopics(topics, summary);
     var result = "";
     result += "<h1>Topics</h1>";
     for (var i = 0; i < summary.topics.length; i++) {

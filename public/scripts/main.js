@@ -61,7 +61,7 @@ youtubeLinkForm.onsubmit = function(event) {
         }
     });
     console.log("Data successfully sent to backend: youtube link");*/
-}
+//}
 
 const imgForm = document.getElementById("imgForm");
 const img = document.getElementById("img");
