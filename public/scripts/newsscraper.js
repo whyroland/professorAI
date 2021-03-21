@@ -1,6 +1,8 @@
 const NewsAPI = require('newsapi');
 // const newsapi = new NewsAPI('92e3f4d9cf4648a9894aba080ab53935');
-const newsapi = new NewsAPI('ee20158b78584060b726a72f902b305a');
+//const newsapi = new NewsAPI('ee20158b78584060b726a72f902b305a');
+const newsapi = new NewsAPI('feda2af25ebe4afca46933478d3c12aa');
+
 
 module.exports = {
     getArticles,

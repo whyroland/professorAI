@@ -315,7 +315,7 @@ async function vidSearch(key, query, results){
 
 function r1(key, query, results, request) {
   return new Promise(function (resolve, reject) {
-    var url = "url: " + "https://www.googleapis.com/youtube/v3/search?key=" + key + 
+    var url = "https://www.googleapis.com/youtube/v3/search?key=" + key + 
     "&type=video&part=snippet&maxResults=" + results + "&q="+ query;
     const options1 = {
       url: url,
