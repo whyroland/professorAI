@@ -111,8 +111,8 @@ app.post('/uploadMP3', async (req, res) => {
 
 app.post('/uploadIMG', async (req, res) => {
     console.log("Post request received: /uploadIMG");
-    console.log(req.files['img']);
-    var transcript = await mediatosummary.transcribeImage(req.files['img'].data);
+    console.log(req.files.img);
+    var transcript = await mediatosummary.transcribeImage(req.files.img);
     console.log(transcript);
     var summary = await mediatosummary.getInfo(transcript);
     var result = "";
@@ -138,7 +138,6 @@ app.post('/uploadYoutube', async (req, res) => {
     console.log(link);
     var transcript = await youtubesub.transcript(link);
     var summary = await mediatosummary.getInfo(transcript);
-    var summary = await mediatosummary.getSummaryFromVideo("tmp/" + filename);
     var result = "";
     result += "<h1>Transcript</h1>";
     result += "<p>" + summary.transcript + "</p><br><br>";

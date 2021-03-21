@@ -3,12 +3,9 @@ const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('ee20158b78584060b726a72f902b305a');
 
 module.exports = {
-    getArticles
+    getArticles,
+    getNews
 };
-
-module.exports = {
-  getNews
-}
 
 /**
  * Retrieves trending headlines in America for the given topic

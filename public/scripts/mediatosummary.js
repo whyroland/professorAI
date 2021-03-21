@@ -301,14 +301,27 @@ async function getTopics(topics, summary) {
 //@return array of videos
 async function vidSearch(key, query, results){
   video = [];
-  var i=0;
-  $.get("https://www.googleapis.com/youtube/v3/search?key=" + key + 
-  "&type=video&part=snippet&maxResults="+results + "&q="+ query, function(data){
-      console.log(data)
-      data.items.forEach(item=> {
-          video[i]=item.id.videoId;
-          i++;
-      });
-  })
+  video = await r1(key, query, results, request);
   return video;
+}
+
+function r1(key, query, results, request) {
+  return new Promise(function (resolve, reject) {
+    const options1 = {
+      url: "https://www.googleapis.com/youtube/v3/search?key=" + key + 
+      "&type=video&part=snippet&maxResults=" +results + "&q="+ query,
+      method: 'GET',
+    };
+    request(options1, function(err, res, body) {
+      video=[];
+      if(err) { 
+        reject(err);
+      }
+      else {
+        //console.log(res.body);
+        video[0]=res.body.videoId;
+        resolve(video);
+      }
+    });
+  });
 }
