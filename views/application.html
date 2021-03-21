@@ -34,9 +34,9 @@
                         <ul class="nav nav-tabs">
                             <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-1">MP4</a></li>
                             <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">MP3</a></li>
-                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Image</a></li>
+                            <!-- <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Image</a></li> -->
                             <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-4">YouTube Link</a></li>
-                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-5">Keywords</a></li>
+                            <!-- <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-5">Keywords</a></li> -->
                             <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-7">Plaintext</a></li>
                         </ul>
                         <div class="tab-content">
@@ -56,14 +56,14 @@
                                 </form>
                                 <p style="margin-top: 1rem;">Note: Larger files may take longer to analyze</p>
                             </div>
-                            <div class="tab-pane text-center" role="tabpanel" id="tab-3">
+                            <!-- <div class="tab-pane text-center" role="tabpanel" id="tab-3">
                                 <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload a .png/.jpeg./jpg/.heic image file below</h1>
                                 <form method="POST" action="/uploadIMG" enctype="multipart/form-data" target="transcript-text" id="imgForm">
                                   <input type="file" id="img" name="img" class="form-margin" style="font-family: 'Inter';">
                                   <input class="btn btn-primary" type="submit" style="font-family: 'Inter';margin-left: 1rem;" value="Upload">
                                 </form>
                                 <p style="margin-top: 1rem;">Note: Unclear files may not yield accurate results</p>
-                            </div>
+                            </div> -->
                             <div class="tab-pane active text-center" role="tabpanel" id="tab-4">
                                 <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload a valid YouTube link below</h1>
                                 <form method="POST" action="/uploadYoutube" enctype="application/x-www-form-urlencoded" target="transcript-text" class="form-margin">
@@ -72,14 +72,14 @@
                                 </form>
                                 <p style="margin-top: 1rem;">Note: Longer videos and/or private videos may not yield accurate results</p>
                             </div>
-                            <div class="tab-pane text-center" role="tabpanel" id="tab-5">
+                            <!-- <div class="tab-pane text-center" role="tabpanel" id="tab-5">
                                 <h1 class="small-margin" style="margin-bottom: 1rem;">Please enter keywords below</h1>
                                 <form method="POST" action="/uploadKeyWords" enctype="application/x-www-form-urlencoded" target="transcript-text">
                                   <input id="keyWords" name="keyWords" class="form-control form-margin" type="text" >
                                   <input type="submit" class="btn btn-primary" style="font-family: 'Inter';margin-left: 1rem;" value="Submit">
                                 </form>
                                 <p style="margin-top: 1rem;">Note: Separate words with commas</p>
-                            </div>
+                            </div> -->
                             <div class="tab-pane text-center" role="tabpanel" id="tab-7">
                                 <h1 class="small-margin" style="margin-bottom: 1rem;">Please paste your article in plaintext in the area below</h1>
                                 <form method="POST" action="/uploadPlainText" enctype="application/x-www-form-urlencoded" target="transcript-text" class="form-margin">

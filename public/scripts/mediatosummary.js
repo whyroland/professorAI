@@ -4,11 +4,13 @@ module.exports = {
   getSummaryFromVideo,
   getSummaryFromAudio,
   getInfo,
-  getTopics
+  getTopics,
+  getKeywords
 }
 
 const path = require('path');
-const ffmpegPath = (path.join(__dirname, '\\node_modules\\@ffmpeg-installer\\win32-x64\\ffmpeg.exe' )).replace('app.asar', 'app.asar.unpacked'); // require('@ffmpeg-installer/ffmpeg').path;
+//const ffmpegPath = (path.join(__dirname, '\\node_modules\\@ffmpeg-installer\\win32-x64\\ffmpeg.exe' )).replace('app.asar', 'app.asar.unpacked'); 
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
 const fs = require('fs');
@@ -110,9 +112,7 @@ async function transcribeImage(image) {
   // Performs text detection on the local file
   const [result] = await client.textDetection(fileName);
   const detections = result.textAnnotations;
-  let finalText = '';
-  detections.forEach(text => finalText += text);
-  return finalText;
+  return detections[0].description;
 }
 
 /**
@@ -159,6 +159,7 @@ function getKeywords(text) {
     .catch(err => reject(err))
   });
 }
+
 
 /**
  * Webscrapes Wikipedia for pages on the terms
@@ -271,8 +272,15 @@ async function getInfo(transcript) {
 }
 
 async function getTopics(topics, summary) {
-  var key = "AIzaSyCwv5VEi6c-RusUgGpcpIRMnafhPRnc4UY"; //api key for youtube videos
-  for (var i = 0; i < 20; i++) {
+  var key = "AIzaSyAzgr5dlJO0uVX4z-MeF_ptSpu4k1a0Kko"; //api key for youtube videos
+  var range = 20;
+  if(typeof topics === "undefined") {
+    return [];
+  }
+  if(topics.length < 20) {
+    range = topics.length;
+  }
+  for (var i = 0; i < range; i++) {
     var wiki = await getWiki(topics[i].label);
     var title = wiki.split('/');
     title = title[title.length-1];
@@ -307,9 +315,10 @@ async function vidSearch(key, query, results){
 
 function r1(key, query, results, request) {
   return new Promise(function (resolve, reject) {
+    var url = "url: " + "https://www.googleapis.com/youtube/v3/search?key=" + key + 
+    "&type=video&part=snippet&maxResults=" + results + "&q="+ query;
     const options1 = {
-      url: "https://www.googleapis.com/youtube/v3/search?key=" + key + 
-      "&type=video&part=snippet&maxResults=" +results + "&q="+ query,
+      url: url,
       method: 'GET',
     };
     request(options1, function(err, res, body) {
@@ -318,8 +327,8 @@ function r1(key, query, results, request) {
         reject(err);
       }
       else {
-        //console.log(res.body);
-        video[0]=res.body.videoId;
+        console.log(JSON.parse(body).items[0].id);
+        video[0]=JSON.parse(body).items[0].id.videoId;
         resolve(video);
       }
     });

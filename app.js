@@ -2,7 +2,7 @@
 const path = require('path');
 const express = require("express");
 const bodyParser = require("body-parser");
-const ffmpegPath = (path.join(__dirname, '\\node_modules\\@ffmpeg-installer\\win32-x64\\ffmpeg.exe' )).replace('app.asar', 'app.asar.unpacked'); // require('@ffmpeg-installer/ffmpeg').path;
+const ffmpegPath = (path.join(__dirname, '\\node_modules\\@ffmpeg-installer\\win32-x64\\ffmpeg.exe')).replace('app.asar', 'app.asar.unpacked'); // require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
 const fileUpload = require("express-fileupload");
@@ -59,10 +59,12 @@ app.post('/uploadMP4', async (req, res) => {
             result += "<p>" + summary.topics[i].summary + "</p>";
             result += "<a href=\"" + summary.topics[i].link + "\" target=_blank>" + summary.topics[i].link + "</a><br><br>";
             if (summary.topics[i].articles[0] != null) {
-                result += ("<p>Current Event:</p><p><strong>" + summary.topics[i].articles[0].author + " / " + summary.topics[i].articles[0].source.name + " / " + summary.topics[i].articles[0].publishedAt.substring(0, 10) + " / " + summary.topics[i].articles[0].title + ": </strong> " + summary.topics[i].articles[0].description + " </p><a href=\"" + summary.topics[i].articles[0].url + "\" target=_blank>" + summary.topics[i].articles[0].url + "</a><br><br>");
-                result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";
-                result += '<iframe width=\"420\" height=\"315\" src=\"https://www.youtube.com/embed/' + summary.topics[i].vidSearch + '\" frameborder=0 allowfullscreen> </iframe>';
+            result += ("<p>Current Event:</p><p><strong>" + summary.topics[i].articles[0].author + " / " + summary.topics[i].articles[0].source.name + " / " + summary.topics[i].articles[0].publishedAt.substring(0, 10) + " / " + summary.topics[i].articles[0].title + ": </strong> " + summary.topics[i].articles[0].description + " </p><a href=\"" + summary.topics[i].articles[0].url + "\" target=_blank>" + summary.topics[i].articles[0].url + "</a><br><br>");
+            result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";
             }
+            result += "<p>Youtube Resources:</p>"
+            result += "<iframe width=\"420\" height=\"315\" src=\"" + "https://www.youtube.com/embed/" + summary.topics[i].youtube[0] + "\"frameborder=0 allowfullscreen> </iframe>";
+            result += "<p>Youtube link(if embedded video above does not load)</p><a href=\"" + "https://www.youtube.com/" + summary.topics[i].youtube[0] + "\"target=_blank>" + "https://www.youtube.com/" + summary.topics[i].youtube[0] + "</a><br><br>";
         }
         res.write("<!DOCTYPE html><html><body>" + result + "</body></html>")
         res.end();
@@ -97,9 +99,12 @@ app.post('/uploadMP3', async (req, res) => {
             result += "<p>" + summary.topics[i].summary + "</p>";
             result += "<a href=\"" + summary.topics[i].link + "\" target=_blank>" + summary.topics[i].link + "</a><br><br>";
             if (summary.topics[i].articles[0] != null) {
-                result += ("<p>Current Event:</p><p><strong>" + summary.topics[i].articles[0].author + " / " + summary.topics[i].articles[0].source.name + " / " + summary.topics[i].articles[0].publishedAt.substring(0, 10) + " / " + summary.topics[i].articles[0].title + ": </strong> " + summary.topics[i].articles[0].description + " </p><a href=\"" + summary.topics[i].articles[0].url + "\" target=_blank>" + summary.topics[i].articles[0].url + "</a><br><br>");
-                result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";
+            result += ("<p>Current Event:</p><p><strong>" + summary.topics[i].articles[0].author + " / " + summary.topics[i].articles[0].source.name + " / " + summary.topics[i].articles[0].publishedAt.substring(0, 10) + " / " + summary.topics[i].articles[0].title + ": </strong> " + summary.topics[i].articles[0].description + " </p><a href=\"" + summary.topics[i].articles[0].url + "\" target=_blank>" + summary.topics[i].articles[0].url + "</a><br><br>");
+            result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";
             }
+            result += "<p>Youtube Resources:</p>"
+            result += "<iframe width=\"420\" height=\"315\" src=\"" + "https://www.youtube.com/embed/" + summary.topics[i].youtube[0] + "\"frameborder=0 allowfullscreen> </iframe>";
+            result += "<p>Youtube link(if embedded video above does not load)</p><a href=\"" + "https://www.youtube.com/" + summary.topics[i].youtube[0] + "\"target=_blank>" + "https://www.youtube.com/" + summary.topics[i].youtube[0] + "</a><br><br>";
         }
         res.write("<!DOCTYPE html><html><body>" + result + "</body></html>")
         res.end();
@@ -125,8 +130,11 @@ app.post('/uploadIMG', async (req, res) => {
         result += "<a href=\"" + summary.topics[i].link + "\" target=_blank>" + summary.topics[i].link + "</a><br><br>";
         if (summary.topics[i].articles[0] != null) {
             result += ("<p>Current Event:</p><p><strong>" + summary.topics[i].articles[0].author + " / " + summary.topics[i].articles[0].source.name + " / " + summary.topics[i].articles[0].publishedAt.substring(0, 10) + " / " + summary.topics[i].articles[0].title + ": </strong> " + summary.topics[i].articles[0].description + " </p><a href=\"" + summary.topics[i].articles[0].url + "\" target=_blank>" + summary.topics[i].articles[0].url + "</a><br><br>");
-            result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";
+            result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>"; 
         }
+        result += "<p>Youtube Resources:</p>"
+        result += "<iframe width=\"420\" height=\"315\" src=\"" + "https://www.youtube.com/embed/" + summary.topics[i].youtube[0] + "\"frameborder=0 allowfullscreen> </iframe>";
+        result += "<p>Youtube link(if embedded video above does not load)</p><a href=\"" + "https://www.youtube.com/" + summary.topics[i].youtube[0] + "\"target=_blank>" + "https://www.youtube.com/" + summary.topics[i].youtube[0] + "</a><br><br>";
     }
     res.write("<!DOCTYPE html><html><body>" + result + "</body></html>")
     res.end();
@@ -148,8 +156,11 @@ app.post('/uploadYoutube', async (req, res) => {
         result += "<a href=\"" + summary.topics[i].link + "\" target=_blank>" + summary.topics[i].link + "</a><br><br>";
         if (summary.topics[i].articles[0] != null) {
             result += ("<p>Current Event:</p><p><strong>" + summary.topics[i].articles[0].author + " / " + summary.topics[i].articles[0].source.name + " / " + summary.topics[i].articles[0].publishedAt.substring(0, 10) + " / " + summary.topics[i].articles[0].title + ": </strong> " + summary.topics[i].articles[0].description + " </p><a href=\"" + summary.topics[i].articles[0].url + "\" target=_blank>" + summary.topics[i].articles[0].url + "</a><br><br>");
-            result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";
+            result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";    
         }
+        result += "<p>Youtube Resources:</p>"
+        result += "<iframe width=\"420\" height=\"315\" src=\"" + "https://www.youtube.com/embed/" + summary.topics[i].youtube[0] + "\"frameborder=0 allowfullscreen> </iframe>";
+        result += "<p>Youtube link(if embedded video above does not load)</p><a href=\"" + "https://www.youtube.com/" + summary.topics[i].youtube[0] + "\"target=_blank>" + "https://www.youtube.com/" + summary.topics[i].youtube[0] + "</a><br><br>";
     }
     res.write("<!DOCTYPE html><html><body>" + result + "</body></html>")
     res.end();
@@ -159,9 +170,9 @@ app.post('/uploadKeyWords', async (req, res) => {
     console.log("Post request received: /uploadKeyWords");
     console.log(req.body);
     var keyWordString = req.body["keyWords"];
-    var topics = mediatosummary.tokenize(keyWordString); //return array
+    var topics = await mediatosummary.getKeywords(keyWordString); //return array
     var summary = {};
-    summary.topics = await getTopics(topics, summary);
+    summary.topics = await mediatosummary.getTopics(topics, summary);
     var result = "";
     result += "<h1>Topics</h1>";
     for (var i = 0; i < summary.topics.length; i++) {
@@ -172,13 +183,37 @@ app.post('/uploadKeyWords', async (req, res) => {
             result += ("<p>Current Event:</p><p><strong>" + summary.topics[i].articles[0].author + " / " + summary.topics[i].articles[0].source.name + " / " + summary.topics[i].articles[0].publishedAt.substring(0, 10) + " / " + summary.topics[i].articles[0].title + ": </strong> " + summary.topics[i].articles[0].description + " </p><a href=\"" + summary.topics[i].articles[0].url + "\" target=_blank>" + summary.topics[i].articles[0].url + "</a><br><br>");
             result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";
         }
+        result += "<p>Youtube Resources:</p>"
+        result += "<iframe width=\"420\" height=\"315\" src=\"" + "https://www.youtube.com/embed/" + summary.topics[i].youtube[0] + "\"frameborder=0 allowfullscreen> </iframe>";
+        result += "<p>Youtube link(if embedded video above does not load)</p><a href=\"" + "https://www.youtube.com/" + summary.topics[i].youtube[0] + "\"target=_blank>" + "https://www.youtube.com/" + summary.topics[i].youtube[0] + "</a><br><br>";
     }
     res.write("<!DOCTYPE html><html><body>" + result + "</body></html>")
     res.end();
 });
 
-app.post('/uploadTXT', (req, res) => {
-
+app.post('/uploadPlainText', async(req, res) => {
+    console.log("Post request received: /uploadPlainText");
+    var text = req.body["plainText"];
+    var summary = await mediatosummary.getInfo(text);
+    res.type('html');
+    var result = "";
+    result += "<h1>Transcript</h1>";
+    result += "<p>" + summary.transcript + "</p><br><br>";
+    result += "<h1>Topics</h1>";
+    for (var i = 0; i < summary.topics.length; i++) {
+        result += "<h3>" + summary.topics[i].title + "</h3>";
+        result += "<p>" + summary.topics[i].summary + "</p>";
+        result += "<a href=\"" + summary.topics[i].link + "\" target=_blank>" + summary.topics[i].link + "</a><br><br>";
+        if (summary.topics[i].articles[0] != null) {
+        result += ("<p>Current Event:</p><p><strong>" + summary.topics[i].articles[0].author + " / " + summary.topics[i].articles[0].source.name + " / " + summary.topics[i].articles[0].publishedAt.substring(0, 10) + " / " + summary.topics[i].articles[0].title + ": </strong> " + summary.topics[i].articles[0].description + " </p><a href=\"" + summary.topics[i].articles[0].url + "\" target=_blank>" + summary.topics[i].articles[0].url + "</a><br><br>");
+        result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";
+        }
+        result += "<p>Youtube Resources:</p>"
+        result += "<iframe width=\"420\" height=\"315\" src=\"" + "https://www.youtube.com/embed/" + summary.topics[i].youtube[0] + "\"frameborder=0 allowfullscreen> </iframe>";
+        result += "<p>Youtube link(if embedded video above does not load)</p><a href=\"" + "https://www.youtube.com/" + summary.topics[i].youtube[0] + "\"target=_blank>" + "https://www.youtube.com/" + summary.topics[i].youtube[0] + "</a><br><br>";
+    }
+    res.write("<!DOCTYPE html><html><body>" + result + "</body></html>")
+    res.end();
 });
 
 app.post('/getAnswer', (req, res) => {

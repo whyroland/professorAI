@@ -15,6 +15,7 @@ async function transcript(link) {
 
 
   captionURL = await r1(link, request);
+  console.log("captionURL: " + captionURL);
   transcript = await r2(captionURL, request, parser);
   return transcript;
 }
@@ -42,7 +43,7 @@ function r1(link, request) {
 function r2(captionURL, request, parser) {
   return new Promise(function (resolve, reject) {
     const options2 = {
-      url: captionURL,
+      url: "https://www.youtube.com/watch?v=KWRZhXY7qcI",
       method: 'GET',
     };
     request(options2, function(err, res, body) {
