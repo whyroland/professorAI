@@ -1,11 +1,16 @@
 // Setup NPM libraries
+const path = require('path');
 const express = require("express");
 const bodyParser = require("body-parser");
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+const ffmpegPath = (path.join(__dirname, '\\node_modules\\@ffmpeg-installer\\win32-x64\\ffmpeg.exe' )).replace('app.asar', 'app.asar.unpacked'); // require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
 const fileUpload = require("express-fileupload");
 const fs = require("fs");
+const multer = require("multer");
+const upload = multer({
+    storage: multer.memoryStorage()
+});
 
 // Import functions in from the other JS files
 const mediatosummary = require(__dirname + "/public/scripts/mediatosummary.js");
@@ -14,7 +19,7 @@ const askprofessor = require(__dirname + "/public/scripts/askprofessor.js");
 
 // Setup server
 const app = express();
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -45,19 +50,23 @@ app.post('/uploadMP4', async (req, res) => {
             }
         });
         var summary = await mediatosummary.getSummaryFromVideo("tmp/" + filename);
-        console.log(summary);
-        res.type('html');
-        res.write("<h1>Transcript</h1>");
-        res.write("<p>"+summary.transcript+"</p><br><br>");
-        res.write("<h1>Topics</h1>");
-        for(var i=0; i< summary.topics.length; i++) {
-            res.write("<h3>"+summary.topics[i].title+"</h3>");
-            res.write("<p>"+summary.topics[i].summary+"</p>");
-            res.write("<a href=\""+ summary.topics[i].link + "\" target=_blank>"+summary.topics[i].link+"</a><br><br>")
+        var result = "";
+        result += "<h1>Transcript</h1>";
+        result += "<p>" + summary.transcript + "</p><br><br>";
+        result += "<h1>Topics</h1>";
+        for (var i = 0; i < summary.topics.length; i++) {
+            result += "<h3>" + summary.topics[i].title + "</h3>";
+            result += "<p>" + summary.topics[i].summary + "</p>";
+            result += "<a href=\"" + summary.topics[i].link + "\" target=_blank>" + summary.topics[i].link + "</a><br><br>";
+            if (summary.topics[i].articles[0] != null) {
+                result += ("<p>Current Event:</p><p><strong>" + summary.topics[i].articles[0].author + " / " + summary.topics[i].articles[0].source.name + " / " + summary.topics[i].articles[0].publishedAt.substring(0, 10) + " / " + summary.topics[i].articles[0].title + ": </strong> " + summary.topics[i].articles[0].description + " </p><a href=\"" + summary.topics[i].articles[0].url + "\" target=_blank>" + summary.topics[i].articles[0].url + "</a><br><br>");
+                result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";
+                result += '<iframe width=\"420\" height=\"315\" src=\"https://www.youtube.com/embed/' + summary.topics[i].vidSearch + '\" frameborder=0 allowfullscreen> </iframe>';
+            }
         }
+        res.write("<!DOCTYPE html><html><body>" + result + "</body></html>")
         res.end();
-    }
-    else {
+    } else {
         console.log('Error');
     }
 
@@ -78,23 +87,49 @@ app.post('/uploadMP3', async (req, res) => {
                 console.log(err);
             }
         });
-        var summary = await mediatosummary.getSummaryFromAudio("tmp/" + filename);
-        console.log(summary);
-        res.type('html');
-        res.write("<h1>Transcript</h1>");
-        res.write("<p>"+summary.transcript+"</p><br><br>");
-        res.write("<h1>Topics</h1>");
-        for(var i=0; i< summary.topics.length; i++) {
-            res.write("<h3>"+summary.topics[i].title+"</h3>");
-            res.write("<p>"+summary.topics[i].summary+"</p>");
-            res.write("<a href=\""+ summary.topics[i].link + "\" target=_blank>"+summary.topics[i].link+"</a><br><br>")
+        var summary = await mediatosummary.getSummaryFromVideo("tmp/" + filename);
+        var result = "";
+        result += "<h1>Transcript</h1>";
+        result += "<p>" + summary.transcript + "</p><br><br>";
+        result += "<h1>Topics</h1>";
+        for (var i = 0; i < summary.topics.length; i++) {
+            result += "<h3>" + summary.topics[i].title + "</h3>";
+            result += "<p>" + summary.topics[i].summary + "</p>";
+            result += "<a href=\"" + summary.topics[i].link + "\" target=_blank>" + summary.topics[i].link + "</a><br><br>";
+            if (summary.topics[i].articles[0] != null) {
+                result += ("<p>Current Event:</p><p><strong>" + summary.topics[i].articles[0].author + " / " + summary.topics[i].articles[0].source.name + " / " + summary.topics[i].articles[0].publishedAt.substring(0, 10) + " / " + summary.topics[i].articles[0].title + ": </strong> " + summary.topics[i].articles[0].description + " </p><a href=\"" + summary.topics[i].articles[0].url + "\" target=_blank>" + summary.topics[i].articles[0].url + "</a><br><br>");
+                result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";
+            }
         }
+        res.write("<!DOCTYPE html><html><body>" + result + "</body></html>")
         res.end();
-    }
-    else {
+    } else {
         console.log('Error');
     }
 
+});
+
+app.post('/uploadIMG', async (req, res) => {
+    console.log("Post request received: /uploadIMG");
+    console.log(req.files['img']);
+    var transcript = await mediatosummary.transcribeImage(req.files['img'].data);
+    console.log(transcript);
+    var summary = await mediatosummary.getInfo(transcript);
+    var result = "";
+    result += "<h1>Transcript</h1>";
+    result += "<p>" + summary.transcript + "</p><br><br>";
+    result += "<h1>Topics</h1>";
+    for (var i = 0; i < summary.topics.length; i++) {
+        result += "<h3>" + summary.topics[i].title + "</h3>";
+        result += "<p>" + summary.topics[i].summary + "</p>";
+        result += "<a href=\"" + summary.topics[i].link + "\" target=_blank>" + summary.topics[i].link + "</a><br><br>";
+        if (summary.topics[i].articles[0] != null) {
+            result += ("<p>Current Event:</p><p><strong>" + summary.topics[i].articles[0].author + " / " + summary.topics[i].articles[0].source.name + " / " + summary.topics[i].articles[0].publishedAt.substring(0, 10) + " / " + summary.topics[i].articles[0].title + ": </strong> " + summary.topics[i].articles[0].description + " </p><a href=\"" + summary.topics[i].articles[0].url + "\" target=_blank>" + summary.topics[i].articles[0].url + "</a><br><br>");
+            result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";
+        }
+    }
+    res.write("<!DOCTYPE html><html><body>" + result + "</body></html>")
+    res.end();
 });
 
 app.post('/uploadYoutube', async (req, res) => {
@@ -103,31 +138,43 @@ app.post('/uploadYoutube', async (req, res) => {
     console.log(link);
     var transcript = await youtubesub.transcript(link);
     var summary = await mediatosummary.getInfo(transcript);
+    var summary = await mediatosummary.getSummaryFromVideo("tmp/" + filename);
     var result = "";
-    result += "<h3>Transcript</h3>";
-    result += "<p>"+summary.transcript+"</p><br><br>";
-    result += "<h3>Topics</h3>";
-    for(var i=0; i< summary.topics.length; i++) {
-        result += "<h5>"+summary.topics[i].title+"</h5>";
-        result += "<p>"+summary.topics[i].summary+"</p>";
-        result += "<a href=\""+ summary.topics[i].link + "\" target=_blank>"+summary.topics[i].link+"</a><br><br>";
+    result += "<h1>Transcript</h1>";
+    result += "<p>" + summary.transcript + "</p><br><br>";
+    result += "<h1>Topics</h1>";
+    for (var i = 0; i < summary.topics.length; i++) {
+        result += "<h3>" + summary.topics[i].title + "</h3>";
+        result += "<p>" + summary.topics[i].summary + "</p>";
+        result += "<a href=\"" + summary.topics[i].link + "\" target=_blank>" + summary.topics[i].link + "</a><br><br>";
+        if (summary.topics[i].articles[0] != null) {
+            result += ("<p>Current Event:</p><p><strong>" + summary.topics[i].articles[0].author + " / " + summary.topics[i].articles[0].source.name + " / " + summary.topics[i].articles[0].publishedAt.substring(0, 10) + " / " + summary.topics[i].articles[0].title + ": </strong> " + summary.topics[i].articles[0].description + " </p><a href=\"" + summary.topics[i].articles[0].url + "\" target=_blank>" + summary.topics[i].articles[0].url + "</a><br><br>");
+            result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";
+        }
     }
-    res.send(JSON.stringify(result));
+    res.write("<!DOCTYPE html><html><body>" + result + "</body></html>")
+    res.end();
 });
 
-app.post('/uploadKeyWords', (req, res) => {
+app.post('/uploadKeyWords', async (req, res) => {
     console.log("Post request received: /uploadKeyWords");
     console.log(req.body);
     var keyWordString = req.body["keyWords"];
-    //var topics = mediatosummary.tokenize(keyWordString); //return array
-        
-    res.type('html');
-    res.write("<h1>Topics</h1>");
-    for(var i=0; i< topics.length; i++) {
-        res.write("<h3>"+topics[i].title+"</h3>");
-        res.write("<p>"+topics[i].summary+"</p>");
-        res.write("<a href=\""+ topics[i].link + "\" target=_blank>"+summary.topics[i].link+"</a><br><br>")
+    var topics = mediatosummary.tokenize(keyWordString); //return array
+    var summary = {};
+    summary.topics = await getTopics(topics, summary);
+    var result = "";
+    result += "<h1>Topics</h1>";
+    for (var i = 0; i < summary.topics.length; i++) {
+        result += "<h3>" + summary.topics[i].title + "</h3>";
+        result += "<p>" + summary.topics[i].summary + "</p>";
+        result += "<a href=\"" + summary.topics[i].link + "\" target=_blank>" + summary.topics[i].link + "</a><br><br>";
+        if (summary.topics[i].articles[0] != null) {
+            result += ("<p>Current Event:</p><p><strong>" + summary.topics[i].articles[0].author + " / " + summary.topics[i].articles[0].source.name + " / " + summary.topics[i].articles[0].publishedAt.substring(0, 10) + " / " + summary.topics[i].articles[0].title + ": </strong> " + summary.topics[i].articles[0].description + " </p><a href=\"" + summary.topics[i].articles[0].url + "\" target=_blank>" + summary.topics[i].articles[0].url + "</a><br><br>");
+            result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";
+        }
     }
+    res.write("<!DOCTYPE html><html><body>" + result + "</body></html>")
     res.end();
 });
 
@@ -141,8 +188,6 @@ app.post('/getAnswer', (req, res) => {
         res.send(JSON.stringify(data)); // Sends the results
     })()
 });
-
-
 
 // Webpages
 app.get("/", function (req, res) {
@@ -174,4 +219,3 @@ app.get('/ask', (req, res) => {
 app.listen(port, function () {
     console.log("Server has started running on port: " + port);
 });
-

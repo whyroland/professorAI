@@ -1,0 +1,46 @@
+{
+  "name": "linghacks",
+  "version": "1.0.0",
+  "description": "```\r npm install express\r npm install express-fileupload\r npm install fluent-ffmpeg\r npm install @ffmpeg-installer/ffmpeg\r npm install @google-cloud/speech\r npm install @google-cloud/storage\r npm install textrazor\r npm install jade\r npm install fs\r npm install body-parser\r npm install request\r ```",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erice04/linghacks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erice04/linghacks/issues"
+  },
+  "homepage": "https://github.com/erice04/linghacks#readme",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
+    "@google-cloud/language": "^4.2.2",
+    "@google-cloud/speech": "^4.4.0",
+    "@google-cloud/storage": "^5.8.1",
+    "@google-cloud/vision": "^2.3.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "ffmpeg": "0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "jade": "^1.11.0",
+    "jquery": "^3.6.0",
+    "jspdf": "^2.3.1",
+    "mime": "^2.5.2",
+    "multer": "^1.4.2",
+    "newsapi": "^2.4.1",
+    "path": "^0.12.7",
+    "textrazor": "^2.1.0",
+    "tmp": "^0.2.1",
+    "tmp-promise": "^3.0.2",
+    "video-converter": "^1.0.0",
+    "xhr2": "^0.2.1",
+    "xmldom": "^0.5.0",
+    "xmlhttprequest": "^1.8.0",
+    "youtube.get-video-info": "^1.0.2"
+  }
+}

@@ -31,6 +31,7 @@
 // }
 
 // This is where we will connect the application to the backend
+/*
 const youtubeLinkForm = document.getElementById("youtube-form");
 const youtubeLink = document.getElementById("youtube-link");
 
@@ -56,11 +57,43 @@ youtubeLinkForm.onsubmit = function(event) {
         type: 'POST',
         success: function (data) {
           console.log("data: " + data);
-          document.getElementById("yt-transcript-text").innerHTML = data;
+          document.getElementById("transcript-text").innerHTML = data;
         }
     });
-    console.log("Data successfully sent to backend: youtube link");
+    console.log("Data successfully sent to backend: youtube link");*/
+//}
+
+const imgForm = document.getElementById("imgForm");
+const img = document.getElementById("img");
+
+imgForm.onsubmit = function(event) {
+  event.preventDefault();
+  const file = img.files[0];
+  console.log(file.value);
+
+  const formData = new FormData();
+  formData.append("myFiles[]", file);
+  console.log(formData);
+
+  jQuery.ajax({
+    url: '/uploadIMG',
+    data: formData,
+    cache: false,
+    contentType: false,
+    processData: false,
+    method: 'POST',
+    type: 'POST', // For jQuery < 1.9
+    success: function (data) {
+      console.log("data: " + data);
+      document.getElementById("transcript-text").innerHTML = data;
+    }
+  });
+  console.log("Data Sent");
 }
+
+
+
+
 
 // // const uploadForm = document.getElementById("uploadForm");
 // // const mp4 = document.getElementById("mp4");

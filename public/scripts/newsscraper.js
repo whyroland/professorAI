@@ -1,5 +1,10 @@
 const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('92e3f4d9cf4648a9894aba080ab53935');
+// const newsapi = new NewsAPI('92e3f4d9cf4648a9894aba080ab53935');
+const newsapi = new NewsAPI('ee20158b78584060b726a72f902b305a');
+
+module.exports = {
+    getArticles
+};
 
 module.exports = {
   getNews
@@ -41,8 +46,8 @@ async function getArticles(keyTerm, numArticles) {
         results.push(response.articles[index]);
         response.articles.splice(index, index + 1);
     }
-    console.log(results);
+    // console.log(results);
     return results;
 }
 
-getArticles("covid", 3);
+// getArticles("covid", 3);

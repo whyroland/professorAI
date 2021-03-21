@@ -1,19 +1,23 @@
 //Any function that you want to be used in other files put it in here
 module.exports = {
+  transcribeImage,
   getSummaryFromVideo,
   getSummaryFromAudio,
   getInfo,
   getTopics
 }
 
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+const path = require('path');
+const ffmpegPath = (path.join(__dirname, '\\node_modules\\@ffmpeg-installer\\win32-x64\\ffmpeg.exe' )).replace('app.asar', 'app.asar.unpacked'); // require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
 const fs = require('fs');
 const speech = require('@google-cloud/speech');
 const {Storage} = require('@google-cloud/storage');
+const vision = require('@google-cloud/vision');
 const TextRazor = require('textrazor');
 const request = require('request');
+const news = require(__dirname + "/newsscraper.js");
 // const language = require('@google-cloud/language');
 // const MonkeyLearn = require('monkeylearn');
 
@@ -91,6 +95,24 @@ async function transcribe(file) {
   .join('. ');
   console.log('transcription generated')
   return transcription
+}
+
+async function transcribeImage(image) {
+  // Credentials
+  const projectId = 'linghacks';
+  const keyFilename = 'LingHacks-7227ba75112d.json';
+
+  // Creates a client
+  const client = new vision.ImageAnnotatorClient({projectId, keyFilename});
+
+  const fileName = image;
+
+  // Performs text detection on the local file
+  const [result] = await client.textDetection(fileName);
+  const detections = result.textAnnotations;
+  let finalText = '';
+  detections.forEach(text => finalText += text);
+  return finalText;
 }
 
 /**
@@ -232,6 +254,7 @@ async function getSummaryFromAudio(audioFile) {
   return summary;
 }
 // Gets Summary using TextRazor NLP
+// Central function
 async function getInfo(transcript) {
   var topics = await getKeywords(transcript);
   var summary = {};
@@ -241,13 +264,14 @@ async function getInfo(transcript) {
   
   console.log();
   console.log('Summary: ')
-  console.log(summary);
+  // console.log(summary);
   
 
   return summary;
 }
 
 async function getTopics(topics, summary) {
+  var key = "AIzaSyCwv5VEi6c-RusUgGpcpIRMnafhPRnc4UY"; //api key for youtube videos
   for (var i = 0; i < 20; i++) {
     var wiki = await getWiki(topics[i].label);
     var title = wiki.split('/');
@@ -255,10 +279,15 @@ async function getTopics(topics, summary) {
     if (title.length > 0) {
       var extract = await getExtract(title);
       if (extract.length > 0 && !extract.includes('may refer to:')) {
+        var currevents = await news.getArticles(title.replace(/_/g, ' '), 1);
+        console.log(topics[i].label);
+        var ytLinks = await vidSearch(key, topics[i].label, 1)
         summary.topics.push({
           title: title.replace(/_/g, ' '),
           summary: extract,
-          link: wiki
+          link: wiki,
+          articles: currevents,
+          youtube: ytLinks
         })
       }
     }
@@ -267,3 +296,19 @@ async function getTopics(topics, summary) {
 }
 
 //getSummary('samples/transcript-test.mp4');
+
+//@params apiKey, query, results
+//@return array of videos
+async function vidSearch(key, query, results){
+  video = [];
+  var i=0;
+  $.get("https://www.googleapis.com/youtube/v3/search?key=" + key + 
+  "&type=video&part=snippet&maxResults="+results + "&q="+ query, function(data){
+      console.log(data)
+      data.items.forEach(item=> {
+          video[i]=item.id.videoId;
+          i++;
+      });
+  })
+  return video;
+}
