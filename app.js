@@ -159,7 +159,7 @@ app.post('/uploadKeyWords', async (req, res) => {
     console.log(req.body);
     var keyWordString = req.body["keyWords"];
     //var topics = mediatosummary.tokenize(keyWordString); //return array
-
+    getTopics(keyWordString, summary)
     var result = "";
     result += "<h1>Topics</h1>";
     for (var i = 0; i < summary.topics.length; i++) {

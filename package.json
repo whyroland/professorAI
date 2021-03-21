@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/erice04/linghacks#readme",
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
     "@google-cloud/language": "^4.2.2",
     "@google-cloud/speech": "^4.4.0",
     "@google-cloud/storage": "^5.8.1",
