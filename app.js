@@ -1,7 +1,8 @@
 // Setup NPM libraries
+const path = require('path');
 const express = require("express");
 const bodyParser = require("body-parser");
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path.replace('app.asar', 'app.asar.unpacked'); // require('@ffmpeg-installer/ffmpeg').path;
+const ffmpegPath = (path.join(__dirname, '\\node_modules\\@ffmpeg-installer\\win32-x64\\ffmpeg.exe' )).replace('app.asar', 'app.asar.unpacked'); // require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
 const fileUpload = require("express-fileupload");
@@ -60,6 +61,7 @@ app.post('/uploadMP4', async (req, res) => {
             if (summary.topics[i].articles[0] != null) {
                 result += ("<p>Current Event:</p><p><strong>" + summary.topics[i].articles[0].author + " / " + summary.topics[i].articles[0].source.name + " / " + summary.topics[i].articles[0].publishedAt.substring(0, 10) + " / " + summary.topics[i].articles[0].title + ": </strong> " + summary.topics[i].articles[0].description + " </p><a href=\"" + summary.topics[i].articles[0].url + "\" target=_blank>" + summary.topics[i].articles[0].url + "</a><br><br>");
                 result += "<img src='" + summary.topics[i].articles[0].urlToImage + "' alt='" + summary.topics[i].articles[0].title + "' style='max-width:50%'></img><br><br><br>";
+                result += '<iframe width=\"420\" height=\"315\" src=\"https://www.youtube.com/embed/' + summary.topics[i].vidSearch + '\" frameborder=0 allowfullscreen> </iframe>';
             }
         }
         res.write("<!DOCTYPE html><html><body>" + result + "</body></html>")
