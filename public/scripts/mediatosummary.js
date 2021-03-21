@@ -2,7 +2,8 @@
 module.exports = {
   getSummaryFromVideo,
   getSummaryFromAudio,
-  getInfo
+  getInfo,
+  getTopics
 }
 
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
@@ -235,6 +236,15 @@ async function getInfo(transcript) {
   var topics = await getKeywords(transcript);
   var summary = {};
   summary.transcript = transcript;
+  summary.topics = await getTopics(summary);
+  console.log();
+  console.log('Summary: ')
+  console.log(summary);
+
+  return summary;
+}
+
+async function getTopics(summary) {
   summary.topics = [];
   for (var i = 0; i < 20; i++) {
     var wiki = await getWiki(topics[i].label);
@@ -251,11 +261,7 @@ async function getInfo(transcript) {
       }
     }
   }
-  console.log();
-  console.log('Summary: ')
-  console.log(summary);
-
-  return summary;
+  return summary.topics;
 }
 
 //getSummary('samples/transcript-test.mp4');

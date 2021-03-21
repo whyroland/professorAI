@@ -122,7 +122,19 @@ app.post('/uploadYoutube', async (req, res) => {
 });
 
 app.post('/uploadKeyWords', (req, res) => {
-
+    console.log("Post request received: /uploadKeyWords");
+    console.log(req.body);
+    var keyWordString = req.body["keyWords"];
+    //var topics = mediatosummary.tokenize(keyWordString); //return array
+        
+    res.type('html');
+    res.write("<h1>Topics</h1>");
+    for(var i=0; i< topics.length; i++) {
+        res.write("<h3>"+topics[i].title+"</h3>");
+        res.write("<p>"+topics[i].summary+"</p>");
+        res.write("<a href=\""+ topics[i].link + "\" target=_blank>"+summary.topics[i].link+"</a><br><br>")
+    }
+    res.end();
 });
 
 app.post('/uploadTXT', (req, res) => {

@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 // // This is where we will connect the application to the backend
 // const youtubeLinkForm = document.getElementById("youtube-form");
 // const youtubeLink = document.getElementById("youtube-link");
@@ -33,7 +30,6 @@
 //     console.log("Data successfully sent to backend: youtube link");
 // }
 
->>>>>>> parent of f3832a9 (Merge branch 'main' of https://github.com/erice04/linghacks into main)
 // This is where we will connect the application to the backend
 const form = document.getElementById("question-form");
 const input = document.getElementById("question-input");
