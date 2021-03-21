@@ -2,7 +2,8 @@ $(document).ready(function(){
     $("#email").submit(function(event){
         event.preventDefault()
         var id=$("#address").val()
-        sendEmail(id)
+        var content = $("#transcript-text").val()
+        sendEmail(id,content)
     })
     
     function sendEmail(emailID, content) { 

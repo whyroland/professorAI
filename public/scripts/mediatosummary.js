@@ -272,7 +272,7 @@ async function getInfo(transcript) {
 }
 
 async function getTopics(topics, summary) {
-  var key = "AIzaSyC2cDrDP1MderkyTNWPpiZEwb3jYAvfV_0"; //api key for youtube videos
+  var key = "AIzaSyAZexZeeaGK8JVHTrbgObPasCtE_eU20_o"; //api key for youtube videos
   var range = 20;
   if(typeof topics === "undefined") {
     return [];
