@@ -42,36 +42,64 @@
                         <div class="tab-content">
                             <div class="tab-pane text-center" role="tabpanel" id="tab-1">
                                 <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload a .mp4 video file below</h1>
-                                <form><input type="file" class="form-margin" style="font-family: 'Inter';"><button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">Submit</button></form>
+                                <form method="POST" action="/uploadMP4" target="transcript-text" enctype="multipart/form-data">
+                                  <input type="file" id="mp4" name="mp4" class="form-margin" style="font-family: 'Inter';" >
+                                  <input type="submit" class="btn btn-primary" style="font-family: 'Inter';margin-left: 1rem;" value="Upload">
+                                </form>
                                 <p style="margin-top: 1rem;">Note: Larger files may take longer to analyze</p>
                             </div>
                             <div class="tab-pane text-center" role="tabpanel" id="tab-2">
                                 <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload a .mp3 audio file below</h1>
-                                <form><input type="file" class="form-margin" style="font-family: 'Inter';"><button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">Submit</button></form>
+                                <form method="POST" action="/uploadMP3" target="transcript-text" enctype="multipart/form-data">
+                                  <input type="file" id="mp3" name="mp3" class="form-margin" style="font-family: 'Inter';" >
+                                  <input type="submit" class="btn btn-primary" style="font-family: 'Inter';margin-left: 1rem;" value="Upload">
+                                </form>
                                 <p style="margin-top: 1rem;">Note: Larger files may take longer to analyze</p>
                             </div>
                             <div class="tab-pane text-center" role="tabpanel" id="tab-3">
                                 <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload a .png/.jpeg./jpg/.heic image file below</h1>
-                                <form><input type="file" class="form-margin" style="font-family: 'Inter';"><button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">Submit</button></form>
+                                <form method="POST" action="/uploadImage" target="transcript-text" enctype="multipart/form-data">
+                                  <input type="file" id="img" name="img" class="form-margin" style="font-family: 'Inter';">
+                                  <input type="submit" class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;" value="Upload">
+                                </form>
                                 <p style="margin-top: 1rem;">Note: Unclear files may not yield accurate results</p>
                             </div>
                             <div class="tab-pane active text-center" role="tabpanel" id="tab-4">
-                                <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload a valid YouTube link below</h1>
-                                <form class="form-margin"><input class="form-control form-margin" type="text"><button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">Submit</button></form>
+                                <h1 class="small-margin" style="margin-bottom: 1rem;">Please paste a valid YouTube link below</h1>
+                                <form method="POST" action="/uploadYoutube" target="transcript-text" enctype="application/x-www-form-urlencoded">
+                                  <input id="uploadYoutube-link" name="uploadYoutube-link" class="form-control form-margin" type="text">
+                                  <input type="submit" class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;" value="Submit">
+                                </form>
                                 <p style="margin-top: 1rem;">Note: Longer videos and/or private videos may not yield accurate results</p>
                             </div>
                             <div class="tab-pane text-center" role="tabpanel" id="tab-5">
-                                <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload keywords below</h1>
-                                <form><input class="form-control form-margin" type="text"><button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">Submit</button></form>
+                                <h1 class="small-margin" style="margin-bottom: 1rem;">Please enter keywords below</h1>
+                                <form method="POST" action="/uploadKeyWords" target="transcript-text">
+                                  <input id="keyWords" name="keyWords" class="form-control form-margin" type="text" >
+                                  <button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">
+                                    Submit
+                                  </button>
+                                </form>
                                 <p style="margin-top: 1rem;">Note: Separate words with commas</p>
                             </div>
                             <div class="tab-pane text-center" role="tabpanel" id="tab-6">
                                 <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload a .txt text file below</h1>
-                                <form class="form-margin"><input type="file" style="font-family: 'Inter';"><button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">Submit</button></form>
+                                <form method="POST" action="/uploadTXT" target="transcript-text" class="form-margin">
+                                  <input id="txt" name="txt" type="file" style="font-family: 'Inter';">
+                                  <button class="btn btn-primary" type="button" style="font-family: 'Inter';margin-left: 1rem;">
+                                    Submit
+                                  </button>
+                                </form>
                             </div>
                             <div class="tab-pane text-center" role="tabpanel" id="tab-7">
-                                <h1 class="small-margin" style="margin-bottom: 1rem;">Please upload your article in plaintext in the area below</h1>
-                                <form class="form-margin"><textarea class="form-control form-margin"></textarea><button class="btn btn-primary" type="submit" style="font-family: 'Inter';margin-left: 1rem;">Submit</button></form>
+                                <h1 class="small-margin" style="margin-bottom: 1rem;">Please paste your article in plaintext in the area below</h1>
+                                <form method="POST" action="/uploadPlainText" target="transcript-text" class="form-margin">
+                                  <textarea id="plainText" name="plainText" class="form-control form-margin">
+                                  </textarea>
+                                  <button class="btn btn-primary" type="submit" style="font-family: 'Inter';margin-left: 1rem;">
+                                    Submit
+                                  </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -86,10 +114,12 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="mb-0">Result Name</h5>
+                            <h5 class="mb-0">Summary</h5>
                         </div>
-                        <div class="card-body">
-                            <p class="card-text">Result Data</p>
+                        <div vclass="card-body">
+                            <iframe id="transcript-text" name="transcript-text">
+                              Results
+                            </iframe>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 //Any function that you want to be used in other files put it in here
 module.exports = {
-  getSummary,
+  getSummaryFromVideo,
+  getSummaryFromAudio,
   getInfo
 }
 
@@ -197,7 +198,7 @@ function getExtract(query) {
   });
 }
 
-async function getSummary(videoFile) {
+async function getSummaryFromVideo(videoFile) {
   console.log('Video File: ' + videoFile);
   var filename = videoFile.split('/');
   filename = filename[filename.length-1].split('.')[0];
@@ -205,6 +206,18 @@ async function getSummary(videoFile) {
   console.log('Audio File: ' + audioFile);
   await convertToMP3(videoFile);
   console.log();
+  var summary = await getSummaryFromAudio(audioFile);
+  fs.unlink(videoFile, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    //videoFile removed
+  })
+  return summary;
+}
+
+async function getSummaryFromAudio(audioFile) {
   var transcript = await transcribe(audioFile);
   var summary = getInfo(transcript);
   const path = audioFile;
@@ -215,13 +228,6 @@ async function getSummary(videoFile) {
     }
     //audioFile removed
   });
-  fs.unlink(videoFile, (err) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-    //videoFile removed
-  })
   return summary;
 }
 // Gets Summary using TextRazor NLP
