@@ -12,7 +12,7 @@ $(document).ready(function(){
 
     function vidSearch(apiKey, query, results){
         $.get("https://www.googleapis.com/youtube/v3/search?key=" + key + 
-        "&type=video&part=snippet&maxResults="+results + "&q="+ query, function(data){
+        "&type=video&part=snippet&maxResults="+results + "&q="+ query, function(data) {
             console.log(data)
         $("#videos").empty();
             data.items.forEach(item=> {
@@ -24,3 +24,4 @@ $(document).ready(function(){
         })
     }
 })
+
