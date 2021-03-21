@@ -1,7 +1,9 @@
-// const fetch = require('node-fetch');
-// const request = require('request');
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('92e3f4d9cf4648a9894aba080ab53935');
+
+module.exports = {
+  getNews
+}
 
 /**
  * Retrieves trending headlines in America for the given topic
