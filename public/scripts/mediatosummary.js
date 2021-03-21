@@ -1,9 +1,14 @@
 //Any function that you want to be used in other files put it in here
 module.exports = {
+<<<<<<< HEAD
   getSummaryFromVideo,
   getSummaryFromAudio,
   getInfo,
   getTopics
+=======
+  getSummary,
+  getInfo
+>>>>>>> parent of 3c5c7df (Merge branch 'main' of https://github.com/erice04/linghacks into main)
 }
 
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
@@ -199,7 +204,7 @@ function getExtract(query) {
   });
 }
 
-async function getSummaryFromVideo(videoFile) {
+async function getSummary(videoFile) {
   console.log('Video File: ' + videoFile);
   var filename = videoFile.split('/');
   filename = filename[filename.length-1].split('.')[0];
@@ -207,18 +212,6 @@ async function getSummaryFromVideo(videoFile) {
   console.log('Audio File: ' + audioFile);
   await convertToMP3(videoFile);
   console.log();
-  var summary = await getSummaryFromAudio(audioFile);
-  fs.unlink(videoFile, (err) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-    //videoFile removed
-  })
-  return summary;
-}
-
-async function getSummaryFromAudio(audioFile) {
   var transcript = await transcribe(audioFile);
   var summary = getInfo(transcript);
   const path = audioFile;
@@ -229,6 +222,13 @@ async function getSummaryFromAudio(audioFile) {
     }
     //audioFile removed
   });
+  fs.unlink(videoFile, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    //videoFile removed
+  })
   return summary;
 }
 // Gets Summary using TextRazor NLP
