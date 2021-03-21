@@ -14,6 +14,7 @@ const speech = require('@google-cloud/speech');
 const {Storage} = require('@google-cloud/storage');
 const TextRazor = require('textrazor');
 const request = require('request');
+const news = require(__dirname + "/newsscraper.js");
 // const language = require('@google-cloud/language');
 // const MonkeyLearn = require('monkeylearn');
 
@@ -255,10 +256,12 @@ async function getTopics(topics, summary) {
     if (title.length > 0) {
       var extract = await getExtract(title);
       if (extract.length > 0 && !extract.includes('may refer to:')) {
+        var currevents = await news.getArticles(title.replace(/_/g, ' '), 3);
         summary.topics.push({
           title: title.replace(/_/g, ' '),
           summary: extract,
-          link: wiki
+          link: wiki,
+          articles: await currevents
         })
       }
     }

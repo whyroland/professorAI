@@ -1,3 +1,7 @@
+.holds-the-iframe {
+    background:url(loader.gif) center center no-repeat;
+  }
+
 .text {
     padding: 3% 0%;
 }

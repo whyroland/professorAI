@@ -14,7 +14,7 @@ const askprofessor = require(__dirname + "/public/scripts/askprofessor.js");
 
 // Setup server
 const app = express();
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -52,7 +52,7 @@ app.post('/uploadMP4', async (req, res) => {
         res.write("<h1>Topics</h1>");
         for(var i=0; i< summary.topics.length; i++) {
             res.write("<h3>"+summary.topics[i].title+"</h3>");
-            res.write("<p>"+summary.topics[i].summary+"</p>");
+            res.write("<p style>"+summary.topics[i].summary+"</p>");
             res.write("<a href=\""+ summary.topics[i].link + "\" target=_blank>"+summary.topics[i].link+"</a><br><br>")
         }
         res.end();
@@ -81,6 +81,7 @@ app.post('/uploadMP3', async (req, res) => {
         var summary = await mediatosummary.getSummaryFromAudio("tmp/" + filename);
         console.log(summary);
         res.type('html');
+        res.write("<body>");
         res.write("<h1>Transcript</h1>");
         res.write("<p>"+summary.transcript+"</p><br><br>");
         res.write("<h1>Topics</h1>");
@@ -89,6 +90,7 @@ app.post('/uploadMP3', async (req, res) => {
             res.write("<p>"+summary.topics[i].summary+"</p>");
             res.write("<a href=\""+ summary.topics[i].link + "\" target=_blank>"+summary.topics[i].link+"</a><br><br>")
         }
+        res.write("</body>");
         res.end();
     }
     else {
@@ -120,7 +122,7 @@ app.post('/uploadKeyWords', (req, res) => {
     console.log(req.body);
     var keyWordString = req.body["keyWords"];
     //var topics = mediatosummary.tokenize(keyWordString); //return array
-        
+
     res.type('html');
     res.write("<h1>Topics</h1>");
     for(var i=0; i< topics.length; i++) {
@@ -141,8 +143,6 @@ app.post('/getAnswer', (req, res) => {
         res.send(JSON.stringify(data)); // Sends the results
     })()
 });
-
-
 
 // Webpages
 app.get("/", function (req, res) {
@@ -174,4 +174,3 @@ app.get('/ask', (req, res) => {
 app.listen(port, function () {
     console.log("Server has started running on port: " + port);
 });
-

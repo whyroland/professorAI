@@ -3,6 +3,10 @@
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('92e3f4d9cf4648a9894aba080ab53935');
 
+module.exports = {
+    getArticles
+};
+
 /**
  * Retrieves trending headlines in America for the given topic
  * @param {} keyTerm The term to be searched for
@@ -43,4 +47,4 @@ async function getArticles(keyTerm, numArticles) {
     return results;
 }
 
-getArticles("covid", 3);
+// getArticles("covid", 3);
