@@ -111,6 +111,7 @@ app.post('/uploadMP3', async (req, res) => {
 
 app.post('/uploadIMG', async (req, res) => {
     console.log("Post request received: /uploadIMG");
+    console.log(req.files);
     console.log(req.files['img']);
     var transcript = await mediatosummary.transcribeImage(req.files['img'].data);
     console.log(transcript);
