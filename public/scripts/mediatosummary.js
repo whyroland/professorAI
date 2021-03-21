@@ -64,7 +64,7 @@ async function transcribe(file) {
   const encoding = 'CBR';
   const sampleRateHertz = 48000;
   const languageCode = 'en-US';
- 
+
   const config = {
     encoding: encoding,
     sampleRateHertz: sampleRateHertz,
@@ -95,7 +95,7 @@ async function transcribe(file) {
 
 /**
  * Uploads the file to use
- * @param {} file 
+ * @param {} file
  */
 async function uploadFile(file) {
   // Credentials
@@ -140,8 +140,8 @@ function getKeywords(text) {
 
 /**
  * Webscrapes Wikipedia for pages on the terms
- * @param {} query 
- * @returns 
+ * @param {} query
+ * @returns
  */
 function getWiki(query) {
   return new Promise((resolve, reject) => {
@@ -175,8 +175,8 @@ function getWiki(query) {
 
 /**
  * Obtains summary on the wikipedia pages
- * @param {} query 
- * @returns 
+ * @param {} query
+ * @returns
  */
 function getExtract(query) {
   return new Promise((resolve, reject) => {
@@ -264,14 +264,6 @@ async function getTopics(topics, summary) {
     }
   }
   return summary.topics;
-}
-
-async function tokenize(str, delims) {
-  var tokens = [];
-  var word = "";
-  for(var i=0; i<stringify.length(); i++) {
-    
-  }
 }
 
 //getSummary('samples/transcript-test.mp4');
