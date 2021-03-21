@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 // // This is where we will connect the application to the backend
 // const youtubeLinkForm = document.getElementById("youtube-form");
 // const youtubeLink = document.getElementById("youtube-link");
@@ -31,6 +32,8 @@
 //     console.log("Data successfully sent to backend: youtube link");
 // }
 
+=======
+>>>>>>> parent of 3c5c7df (Merge branch 'main' of https://github.com/erice04/linghacks into main)
 =======
 >>>>>>> parent of 3c5c7df (Merge branch 'main' of https://github.com/erice04/linghacks into main)
 // This is where we will connect the application to the backend
@@ -66,6 +69,7 @@ youtubeLinkForm.onsubmit = function(event) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // // const uploadForm = document.getElementById("uploadForm");
 // // const mp4 = document.getElementById("mp4");
 =======
@@ -87,6 +91,25 @@ youtubeLinkForm.onsubmit = function(event) {
 
 >>>>>>> parent of 3c5c7df (Merge branch 'main' of https://github.com/erice04/linghacks into main)
 
+=======
+// const uploadForm = document.getElementById("uploadForm");
+// const mp4 = document.getElementById("mp4");
+
+// uploadForm.onsubmit = function(event) {
+
+//   event.preventDefault();
+
+//   console.log("mp4 file: " + mp4.value);
+
+
+//   // var jsonData = [{ "file": mp4.value}];
+//   // //var jsonData = [{ "file": mp4.files[0]}];
+
+//   // console.log(jsonData);
+
+
+
+>>>>>>> parent of 3c5c7df (Merge branch 'main' of https://github.com/erice04/linghacks into main)
 //   jQuery.ajax({
 //       url: '/mp4tomp3',
 //       dataType: "json",

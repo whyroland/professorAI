@@ -64,6 +64,7 @@ app.post('/getSummaryFromAudio', (req, res) => {
 });
 
 app.post('/getSummaryFromVideo', (req, res) => {
+<<<<<<< HEAD
 
 });
 
@@ -75,6 +76,19 @@ app.post('/getSummaryFromImage', (req, res) => {
 
 });
 
+=======
+
+});
+
+app.post('/getSummaryFromText', (req, res) => {
+
+});
+
+app.post('/getSummaryFromImage', (req, res) => {
+
+});
+
+>>>>>>> parent of 3c5c7df (Merge branch 'main' of https://github.com/erice04/linghacks into main)
 app.post('/getAnswer', (req, res) => {
     (async () => {
         var data = await askprofessor.askQuestion(req.body.Question[0].question);
@@ -99,6 +113,7 @@ app.post('/getSummaryFromYoutubeLink', async (req, res) => {
     }
     res.send(JSON.stringify(result));
 <<<<<<< HEAD
+<<<<<<< HEAD
 });
 
 app.post('/uploadKeyWords', (req, res) => {
@@ -118,6 +133,8 @@ app.post('/uploadKeyWords', (req, res) => {
 });
 
 app.post('/uploadTXT', (req, res) => {
+=======
+>>>>>>> parent of 3c5c7df (Merge branch 'main' of https://github.com/erice04/linghacks into main)
 =======
 >>>>>>> parent of 3c5c7df (Merge branch 'main' of https://github.com/erice04/linghacks into main)
 

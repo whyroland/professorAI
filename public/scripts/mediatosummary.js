@@ -1,11 +1,14 @@
 //Any function that you want to be used in other files put it in here
 module.exports = {
 <<<<<<< HEAD
+<<<<<<< HEAD
   getSummaryFromVideo,
   getSummaryFromAudio,
   getInfo,
   getTopics
 =======
+=======
+>>>>>>> parent of 3c5c7df (Merge branch 'main' of https://github.com/erice04/linghacks into main)
   getSummary,
   getInfo
 >>>>>>> parent of 3c5c7df (Merge branch 'main' of https://github.com/erice04/linghacks into main)
