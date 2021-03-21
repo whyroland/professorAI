@@ -46,5 +46,6 @@
     "xmldom": "^0.5.0",
     "xmlhttprequest": "^1.8.0",
     "youtube.get-video-info": "^1.0.2"
-  }
+  },
+  "devDependencies": {}
 }
