@@ -160,10 +160,7 @@ app.post('/uploadKeyWords', async (req, res) => {
     var keyWordString = req.body["keyWords"];
     //var topics = mediatosummary.tokenize(keyWordString); //return array
 
-    var summary = await mediatosummary.getSummaryFromVideo("tmp/" + filename);
     var result = "";
-    result += "<h1>Transcript</h1>";
-    result += "<p>" + summary.transcript + "</p><br><br>";
     result += "<h1>Topics</h1>";
     for (var i = 0; i < summary.topics.length; i++) {
         result += "<h3>" + summary.topics[i].title + "</h3>";
