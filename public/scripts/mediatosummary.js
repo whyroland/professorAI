@@ -253,6 +253,7 @@ async function getSummaryFromAudio(audioFile) {
   return summary;
 }
 // Gets Summary using TextRazor NLP
+// Central function
 async function getInfo(transcript) {
   var topics = await getKeywords(transcript);
   var summary = {};
@@ -269,6 +270,7 @@ async function getInfo(transcript) {
 }
 
 async function getTopics(topics, summary) {
+  var key = "AIzaSyCwv5VEi6c-RusUgGpcpIRMnafhPRnc4UY"; //api key for youtube videos
   for (var i = 0; i < 20; i++) {
     var wiki = await getWiki(topics[i].label);
     var title = wiki.split('/');
@@ -277,11 +279,14 @@ async function getTopics(topics, summary) {
       var extract = await getExtract(title);
       if (extract.length > 0 && !extract.includes('may refer to:')) {
         var currevents = await news.getArticles(title.replace(/_/g, ' '), 1);
+        console.log(topics[i].label);
+        var ytLinks = await vidSearch(key, topics[i].label, 1)
         summary.topics.push({
           title: title.replace(/_/g, ' '),
           summary: extract,
           link: wiki,
-          articles: await currevents
+          articles: currevents,
+          youtube: ytLinks
         })
       }
     }
@@ -290,3 +295,19 @@ async function getTopics(topics, summary) {
 }
 
 //getSummary('samples/transcript-test.mp4');
+
+//@params apiKey, query, results
+//@return array of videos
+async function vidSearch(key, query, results){
+  video = [];
+  var i=0;
+  $.get("https://www.googleapis.com/youtube/v3/search?key=" + key + 
+  "&type=video&part=snippet&maxResults="+results + "&q="+ query, function(data){
+      console.log(data)
+      data.items.forEach(item=> {
+          video[i]=item.id.videoId;
+          i++;
+      });
+  })
+  return video;
+}

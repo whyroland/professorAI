@@ -107,11 +107,12 @@ app.post('/uploadMP3', async (req, res) => {
 
 });
 
-app.post('/uploadIMG', upload.array("myFiles[]"), async (req, res) => {
+app.post('/uploadIMG', async (req, res) => {
     console.log("Post request received: /uploadIMG");
-    var transcript = await mediatosummary.trascribeImage(req.files[0].buffer);
+    console.log(req.files['img']);
+    var transcript = await mediatosummary.transcribeImage(req.files['img'].data);
+    console.log(transcript);
     var summary = await mediatosummary.getInfo(transcript);
-    var summary = await mediatosummary.getSummaryFromVideo("tmp/" + filename);
     var result = "";
     result += "<h1>Transcript</h1>";
     result += "<p>" + summary.transcript + "</p><br><br>";
@@ -153,7 +154,7 @@ app.post('/uploadYoutube', async (req, res) => {
     res.end();
 });
 
-app.post('/uploadKeyWords', (req, res) => {
+app.post('/uploadKeyWords', async (req, res) => {
     console.log("Post request received: /uploadKeyWords");
     console.log(req.body);
     var keyWordString = req.body["keyWords"];
