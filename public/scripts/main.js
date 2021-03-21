@@ -30,6 +30,37 @@ youtubeLinkForm.onsubmit = function(event) {
     console.log("Data successfully sent to backend: youtube link");
 }
 
+// This is where we will connect the application to the backend
+const form = document.getElementById("question-form");
+const input = document.getElementById("question-input");
+
+// sends the link in form of a json
+form.onsubmit = function (event) {
+
+    event.preventDefault();
+
+    console.log("input: " + input.value);
+
+    var jsonData = [{ "question": input.value }];
+
+    console.log(jsonData);
+
+    jQuery.ajax({
+        url: '/getAnswer',
+        dataType: "json",
+        data: JSON.stringify({Link: jsonData}),
+        cache: false,
+        contentType: "application/json; charset=utf-8",
+        processData: false,
+        method: 'POST',
+        type: 'POST',
+        success: function (data) {
+          console.log("data: " + data);
+        }
+    });
+    console.log("Data successfully sent to backend: question");
+}
+
 
 // const uploadForm = document.getElementById("uploadForm");
 // const mp4 = document.getElementById("mp4");

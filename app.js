@@ -74,6 +74,10 @@ app.post('/getSummaryFromImage', (req, res) => {
 
 });
 
+app.post('/getAnswer', (req, res) => {
+    
+});
+
 app.post('/getSummaryFromYoutubeLink', async (req, res) => {
     console.log("Post request received: /getSummaryFromYoutubeLink");
     var link = req.body.Link[0].link;
@@ -113,6 +117,11 @@ app.get("/about", function (req, res) {
 app.get("/index", function (req, res) {
     console.log(req.url + "@" + Date() + " User requested to use homepage");
     res.render('index');
+});
+
+app.get('/ask', (req, res) => {
+    console.log(req.url + "@" + Date() + " User requested to ask the professor");
+    res.render('ask');
 });
 
 // Turns on Server
