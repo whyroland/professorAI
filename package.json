@@ -4,7 +4,8 @@
   "description": "```\r npm install express\r npm install express-fileupload\r npm install fluent-ffmpeg\r npm install @ffmpeg-installer/ffmpeg\r npm install @google-cloud/speech\r npm install @google-cloud/storage\r npm install textrazor\r npm install jade\r npm install fs\r npm install body-parser\r npm install request\r ```",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -14,6 +15,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/erice04/linghacks/issues"
+  },
+  "engines": {
+    "node": "15.12"
   },
   "homepage": "https://github.com/erice04/linghacks#readme",
   "dependencies": {
@@ -27,7 +31,7 @@
     "express-fileupload": "^1.2.1",
     "ffmpeg": "0.0.4",
     "fluent-ffmpeg": "^2.1.2",
-    "jade": "^1.11.0",
+    "jade": "^0.29.0",
     "jquery": "^3.6.0",
     "jspdf": "^2.3.1",
     "mime": "^2.5.2",
@@ -42,5 +46,6 @@
     "xmldom": "^0.5.0",
     "xmlhttprequest": "^1.8.0",
     "youtube.get-video-info": "^1.0.2"
-  }
+  },
+  "devDependencies": {}
 }

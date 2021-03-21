@@ -31,9 +31,9 @@ function getNews(keyTerm) {
 
 /**
  * Finds relevant articles relating to the keyTerm
- * @param {} keyTerm 
- * @param {*} numArticles 
- * @returns 
+ * @param {} keyTerm
+ * @param {*} numArticles
+ * @returns
  */
 async function getArticles(keyTerm, numArticles) {
     var response = await getNews(keyTerm);
