@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var key= "AIzaSyCwv5VEi6c-RusUgGpcpIRMnafhPRnc4UY"
+    var key= "---------------------------------"
     var video=''
     $("#vidSearch").submit(function(event){
         document.getElementById("videos").length=0

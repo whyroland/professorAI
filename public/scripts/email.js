@@ -8,11 +8,11 @@ $(document).ready(function(){
     
     function sendEmail(emailID, content) { 
         Email.send({ 
-          Host: "smtp.gmail.com", 
-          Username: "palaryancs@gmail.com", 
-          Password: "bsduagjynwxtwpuc", 
+          Host: "------------------------", 
+          Username: "----------------------", 
+          Password: "--------------------------", 
           To: emailID, 
-          From: "palaryancs@gmail.com", 
+          From: "-------------------", 
           Subject: "Your personalized study notes from ProfessorAI", 
           Body: content, 
         }) 
