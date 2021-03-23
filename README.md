@@ -32,4 +32,4 @@ https://devpost.com/software/name-xazq3o
 - Traverse to the folder in your command line of choosing
 - Run "app.js"
 - Go to "localhost:80" in your internet browser
-**NOTE: Since this is a public repository, we removed our API Keys and Credentials from this public version. If you want a fully functioning version you will have to replace those keys with your own**
+- **NOTE: Since this is a public repository, we removed our API Keys and Credentials from this public version. If you want a fully functioning version you will have to replace those keys with your own**
